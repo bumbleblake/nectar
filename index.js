@@ -93,7 +93,52 @@ client.on("message", async message => {
                         if(json.playerstats.stats[i].name == "Sniper.accum.iKillAssists") var sni_asi = json.playerstats.stats[i].value;
                         if(json.playerstats.stats[i].name == "Spy.accum.iKillAssists") var spy_asi = json.playerstats.stats[i].value; 
                         var total_asi = (sco_asi + sol_asi + spy_asi + pyr_asi + med_asi + dem_asi + hev_asi + eng_asi + sni_asi);
+                        //points
+                        if(json.playerstats.stats[i].name == "Scout.accum.iPointsScored") var sco_pnt = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Soldier.accum.iPointsScored") var sol_pnt = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Pyro.accum.iPointsScored") var pyr_pnt = json.playerstats.stats[i].value;  
+                        if(json.playerstats.stats[i].name == "Demoman.accum.iPointsScored") var dem_pnt = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Heavy.accum.iPointsScored") var hev_pnt = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Engineer.accum.iPointsScored") var eng_pnt = json.playerstats.stats[i].value; 
+                        if(json.playerstats.stats[i].name == "Medic.accum.iPointsScored") var med_pnt = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Sniper.accum.iPointsScored") var sni_pnt = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Spy.accum.iPointsScored") var spy_pnt = json.playerstats.stats[i].value; 
+                        var total_pnt = (sco_pnt + sol_pnt + spy_pnt + pyr_pnt + med_pnt + dem_pnt + hev_pnt + eng_pnt + sni_pnt);
+                        //caps
+                        if(json.playerstats.stats[i].name == "Scout.accum.iPointCaptures") var sco_cap = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Soldier.accum.iPointCaptures") var sol_cap = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Pyro.accum.iPointCaptures") var pyr_cap = json.playerstats.stats[i].value;  
+                        if(json.playerstats.stats[i].name == "Demoman.accum.iPointCaptures") var dem_cap = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Heavy.accum.iPointCaptures") var hev_cap = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Engineer.accum.iPointCaptures") var eng_cap = json.playerstats.stats[i].value; 
+                        if(json.playerstats.stats[i].name == "Medic.accum.iPointCaptures") var med_cap = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Sniper.accum.iPointCaptures") var sni_cap = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Spy.accum.iPointCaptures") var spy_cap = json.playerstats.stats[i].value; 
+                        var total_cap = (sco_cap + sol_cap + spy_cap + pyr_cap + med_cap + dem_cap + hev_cap + eng_cap + sni_cap);
+                        //defenses
+                        if(json.playerstats.stats[i].name == "Scout.accum.iPointDefenses") var sco_def = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Soldier.accum.iPointDefenses") var sol_def = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Pyro.accum.iPointDefenses") var pyr_def = json.playerstats.stats[i].value;  
+                        if(json.playerstats.stats[i].name == "Demoman.accum.iPointDefenses") var dem_def = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Heavy.accum.iPointDefenses") var hev_def = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Engineer.accum.iPointDefenses") var eng_def = json.playerstats.stats[i].value; 
+                        if(json.playerstats.stats[i].name == "Medic.accum.iPointDefenses") var med_def = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Sniper.accum.iPointDefenses") var sni_def = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Spy.accum.iPointDefenses") var spy_def = json.playerstats.stats[i].value; 
+                        var total_def = (sco_def + sol_def + spy_def + pyr_def + med_def + dem_def + hev_def + eng_def + sni_def);
+                        //destructions
+                        if(json.playerstats.stats[i].name == "Scout.accum.iBuildingsDestroyed") var sco_des = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Soldier.accum.iBuildingsDestroyed") var sol_des = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Pyro.accum.iBuildingsDestroyed") var pyr_des = json.playerstats.stats[i].value;  
+                        if(json.playerstats.stats[i].name == "Demoman.accum.iBuildingsDestroyed") var dem_des = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Heavy.accum.iBuildingsDestroyed") var hev_des = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Engineer.accum.iBuildingsDestroyed") var eng_des = json.playerstats.stats[i].value; 
+                        if(json.playerstats.stats[i].name == "Medic.accum.iBuildingsDestroyed") var med_des = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Sniper.accum.iBuildingsDestroyed") var sni_des = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Spy.accum.iBuildingsDestroyed") var spy_des = json.playerstats.stats[i].value; 
+                        var total_des = (sco_des + sol_des + spy_des + pyr_des + med_des + dem_des + hev_des + eng_des + sni_des);
                     }
+                    var typearr = ["overall", "hrs", "hours", "ov", "damage", "dmg", "kills", "support", "sp", "points", "obj", "scout", "soldier", "solly", "pyro", "demoman", "demo", "heavy", "engineer", "engie", "engi", "medic", "med", "sniper", "spy"];
                     if(type === "overall" || type === "hrs" || type === "hours" || type === "ov")
                     message.channel.send({embed: {
                         color: 0xe03a00,
@@ -125,6 +170,24 @@ client.on("message", async message => {
                         },{
                             name: "total assists",
                             value: total_asi.toLocaleString()
+                        }]
+                      }});
+                      if(type === "support" || type === "sp" || type === "points" || type === "obj")
+                       message.channel.send({embed: {
+                        color: 0xe03a00,
+                        author: {
+                            name: `${summary.nickname.toUpperCase()}'S TF2 STATS: SUPPORT`,
+                            icon_url: summary.avatar.large
+                        },
+                        fields: [{
+                            name: "total points",
+                            value: total_pnt.toLocaleString()
+                        },{
+                            name: "total objectives",
+                            value: total_cap.toLocaleString() + " caps, " + total_def.toLocaleString() + " defenses"
+                        },{
+                            name: "total buildings destroyed",
+                            value: total_des.toLocaleString()
                         }]
                       }});
                       if(type === "scout")
@@ -289,6 +352,15 @@ client.on("message", async message => {
                             value: spy_dmg.toLocaleString() + " (" + parseInt(spy_dmg/(spy_hours*60)) + "dpm)"
                         }]
                       }});
+                      if(typearr.indexOf(type) < 0){
+                        const embed = new Discord.RichEmbed()
+                        .setAuthor("ERROR!")
+                        .setColor(0xe03a00)
+                        .setDescription(`${type} is not a valid search! \n \n [refer to \`>help\` for the list of things you can search]`)
+                        .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                        .setThumbnail(client.user.avatarURL);
+                        return message.channel.send({embed});
+                      }
                     }).catch(err => {
                         if(summary.personaState == 0) var diag = "to view your stats, set your profile to public"
                         else var diag = "to view your stats, set your game details to public";
