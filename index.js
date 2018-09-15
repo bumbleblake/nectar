@@ -82,7 +82,17 @@ client.on("message", async message => {
                         if(json.playerstats.stats[i].name == "Sniper.accum.iDamageDealt") var sni_dmg = json.playerstats.stats[i].value;
                         if(json.playerstats.stats[i].name == "Spy.accum.iDamageDealt") var spy_dmg = json.playerstats.stats[i].value; 
                         var total_dmg = (sco_dmg + sol_dmg + spy_dmg + pyr_dmg + med_dmg + dem_dmg + hev_dmg + eng_dmg + sni_dmg);
-                        
+                        //assists
+                        if(json.playerstats.stats[i].name == "Scout.accum.iKillAssists") var sco_asi = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Soldier.accum.iKillAssists") var sol_asi = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Pyro.accum.iKillAssists") var pyr_asi = json.playerstats.stats[i].value;  
+                        if(json.playerstats.stats[i].name == "Demoman.accum.iKillAssists") var dem_asi = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Heavy.accum.iKillAssists") var hev_asi = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Engineer.accum.iKillAssists") var eng_asi = json.playerstats.stats[i].value; 
+                        if(json.playerstats.stats[i].name == "Medic.accum.iKillAssists") var med_asi = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Sniper.accum.iKillAssists") var sni_asi = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Spy.accum.iKillAssists") var spy_asi = json.playerstats.stats[i].value; 
+                        var total_asi = (sco_asi + sol_asi + spy_asi + pyr_asi + med_asi + dem_asi + hev_asi + eng_asi + sni_asi);
                     }
                     if(type === "overall" || type === "hrs" || type === "hours" || type === "ov")
                     message.channel.send({embed: {
@@ -111,10 +121,10 @@ client.on("message", async message => {
                             value: total_kills.toLocaleString()
                         },{
                             name: "total damage",
-                            value: total_dmg.toLocaleString()
+                            value: total_dmg.toLocaleString() + " (" + (parseInt(total_dmg / (total_hours*60))).toLocaleString() + "dpm)"
                         },{
-                            name: "damage per minute",
-                            value: ((parseInt(total_dmg / (total_hours*60)*100))/100).toLocaleString()
+                            name: "total assists",
+                            value: total_asi.toLocaleString()
                         }]
                       }});
                       if(type === "scout")
