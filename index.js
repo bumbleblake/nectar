@@ -121,7 +121,7 @@ client.on("message", async message => {
                             value: total_kills.toLocaleString()
                         },{
                             name: "total damage",
-                            value: total_dmg.toLocaleString() + " (" + (parseInt(total_dmg / (total_hours*60))).toLocaleString() + "dpm)"
+                            value: total_dmg.toLocaleString() + " (" + (Math.round(total_dmg / (total_hours*60))).toLocaleString() + "dpm)"
                         },{
                             name: "total assists",
                             value: total_asi.toLocaleString()
