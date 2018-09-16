@@ -386,6 +386,12 @@ client.on("message", async message => {
                         return message.channel.send({embed});
             })
         }
+        if(command === "help"){
+            var help = "**nectar#7257** commands \n \`\`\`>stats [mode] {vanity ID} \`\`\` \n -gets TF2 statistics! -modes include: \n\`overall/ov\` - total hours \n\`damage/dmg\` - total damage, kills and assists \n\`support/sp\` - total points, caps and destruction \n\`scout\` - total hours, kills and damage as scout \n\`soldier\` - total hours, kills and damage as soldier \n\`pyro\` - total hours, kills and damage as pyro \n\`demo\` - total hours, kills and damage as demoman \n\`heavy\` - total hours, kills and damage as heavy \n\`engi\` - total hours, kills and damage as engineer \n\`med\` - total hours, healing, and ubers as medic \n\`sniper\` - total hours, kills and damage as sniper \n\`spy\` - total hours, kills and damage as spy \n \n *if you have any problems with the nectar bot, please contact bumble#8029*";
+            const member = message.member;
+                member.send(help)
+                .then(() => message.reply("Check your DMs for help!")).catch(error => message.reply("Please enable server DMs!"));
+        }
     }}    
 })
 client.login(process.env.BOT_TOKEN);
