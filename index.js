@@ -11,6 +11,13 @@ client.on("ready", () => {
     .then()
     .catch(console.error);
 });
+client.on("guildMemberAdd", member => {
+  member.addRole(member.guild.roles.find("name", "member").id);
+  var welcome = client.channels.get('490730592191643648');
+  var wlcm_msg = [`${member.id.toString()} has joined the game.`, `${member.id.toString()} has joined the party.`, `${member.id.toString()} is GOD-LIKE (20).`, `${member.id.toString()} is on a KILLING SPREE (5).`, `${member.id.toString()} is UNSTOPPABLE (10).`, `${member.id.toString()} is on a RAMPAGE (15).`, `${member.id.toString()} was automatically assigned to the RED team.`, `${member.id.toString()} was automatically assigned to the BLU team.`, `${member.id.toString()} joined team RED.`, `${member.id.toString()} joined team BLU.`, `${member.id.toString()} changed team state to READY.`, `${member.id.toString()} captured the central control point.`, `${member.id.toString()} captured RED spire.`, `${member.id.toString()} captured BLU spire`, `${member.id.toString()} captured RED base.` , `${member.id.toString()} captured BLU base`];
+  var wlcm_dec = wlcm_msg[Math.round(Math.random()*(wlcm_msg.length-1))]  
+  welcome.send(wlcm_dec);
+});
 client.on("message", async message => {
     if (message.author.bot) return;
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
