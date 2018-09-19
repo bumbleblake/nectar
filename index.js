@@ -30,12 +30,17 @@ client.on("message", async message => {
             else var usern = args[1]
             if(!args[0]) var type = "overall"
             else var type = args[0]
-            var sid2 = new SteamID(usern.toString());
-            if(!sid2.isValid()) var resolve = usern;
-            if(sid2.isValid()) var resolve = "bumblephat";
+            var resolve = usern;
+            if(!isNaN(usern)){
+                var sid = new SteamID(usern)
+                if(sid.isValid()){
+                    var resolve = "bumblephat"
+                    var j = true;
+                }
+            }
             user.ResolveVanityUrl(resolve).then(result => {
-            if(!sid2.isValid()) var id = result.toString();
-            if(sid2.isValid()) var id = usern.toString();
+            var id = result.toString();
+            if(j) id = usern;
             steam.getUserSummary(id).then(summary => {
             steam.getUserRecentGames(id).then(games => {
                 if(games.length < 1 && type === "overall" || games.length <1 && type === "hrs" || games.length <1 && type === "ov" || games.length <1 && type === "hours"){
