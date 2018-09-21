@@ -85,7 +85,9 @@ client.on("message", async message => {
                         if(json.playerstats.stats[i].name == "Medic.accum.iNumberOfKills") var med_kills = json.playerstats.stats[i].value;
                         if(json.playerstats.stats[i].name == "Medic.accum.iHealthPointsHealed") var med_heals = json.playerstats.stats[i].value;
                         if(json.playerstats.stats[i].name == "Sniper.accum.iNumberOfKills") var sni_kills = json.playerstats.stats[i].value;
+                        if(json.playerstats.stats[i].name == "Sniper.accum.iHeadshots") var sni_heads = json.playerstats.stats[i].value;
                         if(json.playerstats.stats[i].name == "Spy.accum.iNumberOfKills") var spy_kills = json.playerstats.stats[i].value; 
+                        if(json.playerstats.stats[i].name == "Spy.accum.iBackstabs") var spy_backs = json.playerstats.stats[i].value;
                         var total_kills = (sco_kills + sol_kills + spy_kills + pyr_kills + med_kills + dem_kills + hev_kills + eng_kills + sni_kills)
                         //damage
                         if(json.playerstats.stats[i].name == "Scout.accum.iDamageDealt") var sco_dmg = json.playerstats.stats[i].value;
@@ -345,7 +347,7 @@ client.on("message", async message => {
                             value: (parseInt(sni_hours).toLocaleString() + " hours, " + parseInt(60 * ((sni_hours)%1)) + " minutes. " + "(" + parseInt(10*((sni_hours/total_hours)*100))/10 + "%)")
                         },{
                             name: "total kills",
-                            value: sni_kills.toLocaleString() + " (" + parseInt(sni_dmg/sni_kills) + "dpk)" 
+                            value: sni_kills.toLocaleString() + " (" + sni_heads + " headshots)" 
                         },{
                             name: "total damage",
                             value: sni_dmg.toLocaleString() + " (" + parseInt(sni_dmg/(sni_hours*60)) + "dpm)"
@@ -363,7 +365,7 @@ client.on("message", async message => {
                             value: (parseInt(spy_hours).toLocaleString() + " hours, " + parseInt(60 * ((spy_hours)%1)) + " minutes. " + "(" + parseInt(10*((spy_hours/total_hours)*100))/10 + "%)")
                         },{
                             name: "total kills",
-                            value: spy_kills.toLocaleString() + " (" + parseInt(spy_dmg/spy_kills) + "dpk)" 
+                            value: spy_kills.toLocaleString() + " (" + spy_backs + " backstabs)" 
                         },{
                             name: "total damage",
                             value: spy_dmg.toLocaleString() + " (" + parseInt(spy_dmg/(spy_hours*60)) + "dpm)"
