@@ -347,7 +347,7 @@ client.on("message", async message => {
                             value: (parseInt(sni_hours).toLocaleString() + " hours, " + parseInt(60 * ((sni_hours)%1)) + " minutes. " + "(" + parseInt(10*((sni_hours/total_hours)*100))/10 + "%)")
                         },{
                             name: "total kills",
-                            value: sni_kills.toLocaleString() + " (" + sni_heads + " headshots)" 
+                            value: sni_kills.toLocaleString() + " (" + parseInt((sni_heads/sni_kills)*100) + "% headshots)" 
                         },{
                             name: "total damage",
                             value: sni_dmg.toLocaleString() + " (" + parseInt(sni_dmg/(sni_hours*60)) + "dpm)"
@@ -365,7 +365,7 @@ client.on("message", async message => {
                             value: (parseInt(spy_hours).toLocaleString() + " hours, " + parseInt(60 * ((spy_hours)%1)) + " minutes. " + "(" + parseInt(10*((spy_hours/total_hours)*100))/10 + "%)")
                         },{
                             name: "total kills",
-                            value: spy_kills.toLocaleString() + " (" + spy_backs + " backstabs)" 
+                            value: spy_kills.toLocaleString() + " (" + parseInt((spy_backs/spy_kills)*100) + "% backstabs)" 
                         },{
                             name: "total damage",
                             value: spy_dmg.toLocaleString() + " (" + parseInt(spy_dmg/(spy_hours*60)) + "dpm)"
