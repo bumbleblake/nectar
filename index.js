@@ -163,7 +163,8 @@ client.on("message", async message => {
                         var total_des = (sco_des + sol_des + spy_des + pyr_des + med_des + dem_des + hev_des + eng_des + sni_des);
                     }
                     var typearr = ["overall", "hrs", "hours", "ov", "damage", "dmg", "kills", "support", "sp", "points", "obj", "scout", "soldier", "solly", "pyro", "demoman", "demo", "heavy", "engineer", "engie", "engi", "medic", "med", "sniper", "spy"];
-                    if(type === "overall" || type === "hrs" || type === "hours" || type === "ov")
+                    type = type.toLowerCase();    
+                if(type === "overall" || type === "hrs" || type === "hours" || type === "ov")
                     message.channel.send({embed: {
                         color: 0xe03a00,
                         author: {
@@ -176,7 +177,11 @@ client.on("message", async message => {
                         },{
                             name: "in-game time",
                             value: "~" + ghours.toLocaleString() + " hours, " + gminutes + " minutes."
-                        }]
+                        }],
+                        footer: {
+                                 icon_url: client.users.get("145772530454626304").avatarURL,
+                                 text: `bumble#8029 | api.steampowered.com`
+                        }
                       }});
                     if(type === "damage" || type === "dmg" || type === "kills")
                     message.channel.send({embed: {
@@ -194,7 +199,11 @@ client.on("message", async message => {
                         },{
                             name: "total assists",
                             value: total_asi.toLocaleString()
-                        }]
+                        }],
+                        footer: {
+                                 icon_url: client.users.get("145772530454626304").avatarURL,
+                                 text: `bumble#8029 | api.steampowered.com`
+                        }
                       }});
                       if(type === "support" || type === "sp" || type === "points" || type === "obj")
                        message.channel.send({embed: {
@@ -212,7 +221,11 @@ client.on("message", async message => {
                         },{
                             name: "total buildings destroyed",
                             value: total_des.toLocaleString()
-                        }]
+                        }],
+                        footer: {
+                                 icon_url: client.users.get("145772530454626304").avatarURL,
+                                 text: `bumble#8029 | api.steampowered.com`
+                        }
                       }});
                       if(type === "scout")
                       message.channel.send({embed: {
@@ -230,7 +243,11 @@ client.on("message", async message => {
                         },{
                             name: "total damage",
                             value: sco_dmg.toLocaleString() + " (" + parseInt(sco_dmg/(sco_hours*60)) + "dpm)"
-                        }]
+                        }],
+                        footer: {
+                                 icon_url: client.users.get("145772530454626304").avatarURL,
+                                 text: `bumble#8029 | api.steampowered.com`
+                        }
                       }});
                       if(type === "soldier" || type === "solly")
                       message.channel.send({embed: {
@@ -248,7 +265,11 @@ client.on("message", async message => {
                         },{
                             name: "total damage",
                             value: sol_dmg.toLocaleString() + " (" + parseInt(sol_dmg/(sol_hours*60)) + "dpm)"
-                        }]
+                        }],
+                        footer: {
+                                 icon_url: client.users.get("145772530454626304").avatarURL,
+                                 text: `bumble#8029 | api.steampowered.com`
+                        }
                       }});
                       if(type === "pyro")
                       message.channel.send({embed: {
@@ -266,7 +287,11 @@ client.on("message", async message => {
                         },{
                             name: "total damage",
                             value: pyr_dmg.toLocaleString() + " (" + parseInt(pyr_dmg/(pyr_hours*60)) + "dpm)"
-                        }]
+                        }],
+                        footer: {
+                                 icon_url: client.users.get("145772530454626304").avatarURL,
+                                 text: `bumble#8029 | api.steampowered.com`
+                        }
                       }});
                       if(type === "demo" || type === "demoman")
                       message.channel.send({embed: {
@@ -284,7 +309,11 @@ client.on("message", async message => {
                         },{
                             name: "total damage",
                             value: dem_dmg.toLocaleString() + " (" + parseInt(dem_dmg/(dem_hours*60)) + "dpm)"
-                        }]
+                        }],
+                        footer: {
+                                 icon_url: client.users.get("145772530454626304").avatarURL,
+                                 text: `bumble#8029 | api.steampowered.com`
+                        }
                       }});
                       if(type === "heavy")
                       message.channel.send({embed: {
@@ -302,7 +331,11 @@ client.on("message", async message => {
                         },{
                             name: "total damage",
                             value: hev_dmg.toLocaleString() + " (" + parseInt(hev_dmg/(hev_hours*60)) + "dpm)"
-                        }]
+                        }],
+                        footer: {
+                                 icon_url: client.users.get("145772530454626304").avatarURL,
+                                 text: `bumble#8029 | api.steampowered.com`
+                        }
                       }});
                       if(type === "engineer" || type === "engi" || type === "engie")
                       message.channel.send({embed: {
@@ -338,7 +371,11 @@ client.on("message", async message => {
                         },{
                             name: "total ubers",
                             value: med_ubers.toLocaleString() + " (" + parseInt(med_heals/med_ubers) + "hpu)"
-                        }]
+                        }],
+                        footer: {
+                                 icon_url: client.users.get("145772530454626304").avatarURL,
+                                 text: `bumble#8029 | api.steampowered.com`
+                        }
                       }});
                       if(type === "sniper")
                       message.channel.send({embed: {
@@ -356,7 +393,11 @@ client.on("message", async message => {
                         },{
                             name: "total damage",
                             value: sni_dmg.toLocaleString() + " (" + parseInt(sni_dmg/(sni_hours*60)) + "dpm)"
-                        }]
+                        }],
+                        footer: {
+                                 icon_url: client.users.get("145772530454626304").avatarURL,
+                                 text: `bumble#8029 | api.steampowered.com`
+                        }
                       }});
                       if(type === "spy")
                       message.channel.send({embed: {
@@ -374,13 +415,17 @@ client.on("message", async message => {
                         },{
                             name: "total damage",
                             value: spy_dmg.toLocaleString() + " (" + parseInt(spy_dmg/(spy_hours*60)) + "dpm)"
-                        }]
+                        }],
+                        footer: {
+                                 icon_url: client.users.get("145772530454626304").avatarURL,
+                                 text: `bumble#8029 | api.steampowered.com`
+                        }
                       }});
                       if(typearr.indexOf(type) < 0){
                         const embed = new Discord.RichEmbed()
                         .setAuthor("ERROR!")
                         .setColor(0xe03a00)
-                        .setDescription(`${type} is not a valid search! \n \n [refer to \`>help\` for the list of things you can search]`)
+                        .setDescription(`${args[0]} is not a valid search! \n \n [refer to \`>help\` for the list of things you can search]`)
                         .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                         .setThumbnail(client.user.avatarURL);
                         return message.channel.send({embed});
@@ -429,7 +474,7 @@ client.on("message", async message => {
                           const embed = new Discord.RichEmbed()
                                 .setAuthor("ERROR!")
                                 .setColor(0xe03a00)
-                                .setDescription(`${type} is not a valid search! \n \n [refer to \`>help\` for the list of things you can search]`)
+                                .setDescription(`${args[0]} is not a valid search! \n \n [refer to \`>help\` for the list of things you can search]`)
                                 .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                 .setThumbnail(client.user.avatarURL);
                                     return message.channel.send({embed});
@@ -514,6 +559,7 @@ client.on("message", async message => {
                                               message.channel.send(embed1);
                                               message.member.send(embed1);
                                         }
+                                        type = type.toLowerCase();
                                           if(type == "misc"){
                                              var embed2 = {embed: {
                                                 color: 0xe03a00,
