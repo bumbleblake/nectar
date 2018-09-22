@@ -530,9 +530,9 @@ client.on("message", async message => {
                                         dpm.push(pl.dapm)
                                         dpma += pl.dapm;
                                         i++;                     
-                                    if (i < json.total) {            
+                                    if (i < json.results) {            
                                         myLoop();              
-                                    }else if(i == json.total){
+                                    }else if(i == json.results){
                                         if(type == "ov" || type == "overall"){
                                         var embed1 = {embed: {
                                             color: 0xe03a00,
@@ -552,7 +552,7 @@ client.on("message", async message => {
                                             }],
                                             footer: {
                                                 icon_url: client.users.get("145772530454626304").avatarURL,
-                                                text: `bumble#8029 | logs.tf | ${json.results} games`
+                                                text: `bumble#8029 | logs.tf | ${json.total} games`
                                             }
                                           }}
                                           message.channel.send(message.author.toString())
@@ -579,7 +579,7 @@ client.on("message", async message => {
                                                 }],
                                                 footer: {
                                                     icon_url: client.users.get("145772530454626304").avatarURL,
-                                                    text: `bumble#8029 | logs.tf | ${json.results} games`
+                                                    text: `bumble#8029 | logs.tf | ${json.total} games`
                                                 }
                                               }
                                               }
