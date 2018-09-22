@@ -405,6 +405,167 @@ client.on("message", async message => {
                         return message.channel.send({embed});
             })
         }
+        if(command === "logs"){
+            message.channel.send("processing...");
+            if(!args[1]) var usern = message.member.displayName.toString();
+            else var usern = args[1];
+            if(!args[0]) var type = "overall";
+            else var type = args[0];
+            var resolve = usern;
+            if(!isNaN(usern)){
+                var sid = new SteamID(usern)
+                if(sid.isValid()){
+                    var resolve = "bumblephat"
+                    var j = true;
+                }
+            }
+            var typeslog = ["ov", "overall", "misc"]
+                   if(typeslog.indexOf(type) < 0){
+                          const embed = new Discord.RichEmbed()
+                                .setAuthor("ERROR!")
+                                .setColor(0xe03a00)
+                                .setDescription(`${type} is not a valid search! \n \n [refer to \`>help\` for the list of things you can search]`)
+                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                .setThumbnail(client.user.avatarURL);
+                                    return message.channel.send({embed});
+                          }
+            user.ResolveVanityUrl(resolve).then(result => {
+               var id64 = result;
+               if(j) id64 = usern;
+                var id3 = (new SteamID(id64)).steam3();
+                steam.getUserSummary(id64).then(summary => {
+                var dpma = 0;
+                var dpm = [];
+                var kills = 0;
+                var deaths = 0;
+                var dmg = 0;
+                var shots = 0;
+                var hits = 0;
+                var assists = 0;
+                var healing = 0;
+                var taken = 0;
+                var airshots = 0;
+                fetch(`http://logs.tf/api/v1/log?player=${id64}`)
+                .then(res => res.json())
+                .then(json => {
+                    if(json.results == 0){
+                        const embed = new Discord.RichEmbed()
+                                .setAuthor("ERROR!")
+                                .setColor(0xe03a00)
+                                .setDescription(`${summary.nickname} does not have any logs! \n \n [maybe this gamer just isn't epic enough]`)
+                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                .setThumbnail(client.user.avatarURL);
+                                return message.channel.send({embed});
+                        }
+                    var i = 0;         
+                    function myLoop(){           
+                        setTimeout(function () {  
+                            fetch(`http://logs.tf/api/v1/log/${json.logs[i].id.toString()}`)
+                                .then(res2 => res2.json())
+                                .then(json2 => { 
+                                    var pl = json2.players[Object.keys(json2.players)[Object.keys(json2.players).indexOf(`${id3}`)]]
+                                        kills += pl.kills;
+                                        deaths += pl.deaths;
+                                        dmg += pl.dmg;
+                                        assists += pl.assists;
+                                        taken += pl.dt;
+                                        airshots += pl.as;
+                                        healing += pl.heal;
+                                        for(var f = 0; f < Object.keys(pl.class_stats).length; f++){
+                                            for(var ff = 0; ff < Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; ff++){
+                                                shots += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].shots);
+                                                hits += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].hits);
+                                            }  
+                                        }
+                                        dpm.push(pl.dapm)
+                                        dpma += pl.dapm;
+                                        i++;                     
+                                    if (i < json.total) {            
+                                        myLoop();              
+                                    }else if(i == json.total){
+                                        if(type == "ov" || type == "overall"){
+                                        var embed1 = {embed: {
+                                            color: 0xe03a00,
+                                            author: {
+                                                name: `${summary.nickname.toUpperCase()}'S LOGS.TF STATISTICS`,
+                                                icon_url: summary.avatar.large
+                                            },
+                                            fields: [{
+                                                name: "kills",
+                                                value: kills.toLocaleString() + " (" + parseFloat(kills/deaths).toFixed(2) + "k/d)",
+                                            },{
+                                                name: "damage",
+                                                value: dmg.toLocaleString() + " (" + parseFloat(dpma/dpm.length).toFixed(2) + "dpm)",
+                                            },{
+                                                name: "accuracy",
+                                                value: parseInt((hits/shots)*100) + "% (" + shots.toLocaleString() + " shots, " + hits.toLocaleString() + " hits)",
+                                            }],
+                                            footer: {
+                                                icon_url: client.users.get("145772530454626304").avatarURL,
+                                                text: `bumble#8029 | logs.tf | ${json.results} games`
+                                            }
+                                          }}
+                                          message.channel.send(message.author.toString())
+                                              message.channel.send(embed1);
+                                              message.member.send(embed1);
+                                        }
+                                          if(type == "misc"){
+                                             var embed2 = {embed: {
+                                                color: 0xe03a00,
+                                                author: {
+                                                    name: `${summary.nickname.toUpperCase()}'S LOGS.TF STATISTICS`,
+                                                    icon_url: summary.avatar.large
+                                                },
+                                                fields: [{
+                                                    name: "airshots",
+                                                    value: airshots.toLocaleString()
+                                                },{
+                                                    name: "assists",
+                                                    value: assists.toLocaleString()
+                                                },{
+                                                    name: "healing",
+                                                    value: healing.toLocaleString()
+                                                }],
+                                                footer: {
+                                                    icon_url: client.users.get("145772530454626304").avatarURL,
+                                                    text: `bumble#8029 | logs.tf | ${json.results} games`
+                                                }
+                                              }
+                                              }
+                                              message.channel.send(message.author.toString())
+                                              message.channel.send(embed2);
+                                              message.member.send(embed2);
+
+                                          };
+                                    }      
+                                });         
+                            }, 1)
+                        }
+                        myLoop();     
+                    })
+                }).catch(err => {
+                    if(isNaN(usern)) var diag = "[you may have made a typo]"
+                    if(!isNaN(usern)) var diag = "[you may have made a typo]"
+                    const embed = new Discord.RichEmbed()
+                                .setAuthor("ERROR!")
+                                .setColor(0xe03a00)
+                                .setDescription(`${usern} is not a valid ID! \n \n ${diag}`)
+                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                .setThumbnail(client.user.avatarURL);
+                                return message.channel.send({embed});
+                    })
+                }).catch(err => {
+                    if(isNaN(usern)) var diag = "[you may have made a typo]"
+                    if(!isNaN(usern)) var diag = "[you may have made a typo]"
+                    const embed = new Discord.RichEmbed()
+                                .setAuthor("ERROR!")
+                                .setColor(0xe03a00)
+                                .setDescription(`${usern} is not a valid ID! \n \n ${diag}`)
+                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                .setThumbnail(client.user.avatarURL);
+                                return message.channel.send({embed});
+                    })
+            }
         if(command === "help"){
             var help = "**nectar#7257** commands \n \`\`\`>stats [mode] {vanity ID} \`\`\` \n ***-GETS TF2 STATISTICS!*** \n **-modes include:** \n\`overall/ov\` - total hours \n\`damage/dmg\` - total damage, kills and assists \n\`support/sp\` - total points, caps and destruction \n\`scout\` - total hours, kills and damage as scout \n\`soldier\` - total hours, kills and damage as soldier \n\`pyro\` - total hours, kills and damage as pyro \n\`demo\` - total hours, kills and damage as demoman \n\`heavy\` - total hours, kills and damage as heavy \n\`engi\` - total hours, kills and damage as engineer \n\`med\` - total hours, healing, and ubers as medic \n\`sniper\` - total hours, kills and damage as sniper \n\`spy\` - total hours, kills and damage as spy \n \n *if you have any problems with the nectar bot, please contact bumble#8029*";
             const member = message.member;
