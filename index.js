@@ -11,6 +11,11 @@ client.on("ready", () => {
     client.user.setPresence({ game: { name: 'Team Fortress 2' }, status: "idle" })
     .then()
     .catch(console.error);
+fetch(`https://backpack.tf/api/IGetCurrencies/v1?key=${process.env.BP_KEY}`)
+    .then(res => res.json())
+    .then(json => {
+        ref = json.response.currencies.metal.price.value;
+    })
 });
 client.on("guildMemberAdd", member => {
   member.addRole(member.guild.roles.find("name", "member").id);
@@ -565,6 +570,84 @@ client.on("message", async message => {
                                 .setThumbnail(client.user.avatarURL);
                                 return message.channel.send({embed});
                     })
+            }
+        if(command === "bp"){
+                if(!args[0]) var usern = message.member.displayName.toString();
+                else var usern = args[0]
+                var resolve = usern;
+            if(!isNaN(usern)){
+                var sid = new SteamID(usern)
+                if(sid.isValid()){
+                    var resolve = "bumblephat"
+                    var j = true;
+                }
+            }
+            function getOrdinal(n) {
+                var s=["th","st","nd","rd"],
+                v=n%100;
+                return n+(s[(v-20)%10]||s[v]||s[0]);
+             }
+            user.ResolveVanityUrl(resolve).then(result => {
+                var id = result.toString();
+                if(j) id = usern;
+                steam.getUserSummary(id).then(summary => {
+                fetch(`https://backpack.tf/api/users/info/v1?steamids=${id}&key=${process.env.BP_KEY}`)
+                .then(res => res.json())
+                .then(json => {
+                    var bp = json.users[id].inventory["440"];
+                    var a = new Date(bp.updated*1000);
+                    var months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+                    var year = a.getFullYear();
+                    var month = months[a.getMonth()];
+                    var date = a.getDate();
+                    var hour = a.getHours();
+                    var min = a.getMinutes();
+                    var sec = a.getSeconds();
+                    var time = getOrdinal(date) + ' ' + month + ' ' + year;
+                    if(!bp.ranking) var rankdisplay = "N/A";
+                    else var rankdisplay = "#" + bp.ranking.toLocaleString();
+                    message.channel.send({embed: {
+                        color: 0xe03a00,
+                        author: {
+                            name: `${summary.nickname.toUpperCase()}'S BACKPACK.TF STATISTICS`,
+                            icon_url: summary.avatar.large
+                        },
+                        fields: [{
+                            name: "value",
+                            value: "$" + (parseFloat(bp.value*ref).toFixed(2)).toLocaleString() + " (" + bp.value.toLocaleString() + " ref)"
+                        },{
+                            name: "rank",
+                            value: rankdisplay
+                        },{
+                            name: "slots",
+                            value: bp.slots.used + "/" + bp.slots.total
+                        }],
+                        footer: {
+                            icon_url: client.users.get("145772530454626304").avatarURL,
+                            text: `bumble#8029 | backpack.tf | last updated ${time}`
+                        }
+                      }})
+                }).catch(err => {
+                    const embed = new Discord.RichEmbed()
+                                .setAuthor("ERROR!")
+                                .setColor(0xe03a00)
+                                .setDescription(`${summary.nickname}'s TF2 inventory is inaccessible! \n \n [does this person play TF2?]`)
+                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                .setThumbnail(client.user.avatarURL);
+                                return message.channel.send({embed});
+                    })
+            });
+            }).catch(err => {
+                if(isNaN(usern)) var diag = "[you may have made a typo]"
+                if(!isNaN(usern)) var diag = "[you may have made a typo]"
+                const embed = new Discord.RichEmbed()
+                            .setAuthor("ERROR!")
+                            .setColor(0xe03a00)
+                            .setDescription(`${usern} is not a valid ID! \n \n ${diag}`)
+                            .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                            .setThumbnail(client.user.avatarURL);
+                            return message.channel.send({embed});
+                })
             }
         if(command === "help"){
             var help = "**nectar#7257** commands \n \`\`\`>stats [mode] {vanity ID} \`\`\` \n ***-GETS TF2 STATISTICS!*** \n **-modes include:** \n\`overall/ov\` - total hours \n\`damage/dmg\` - total damage, kills and assists \n\`support/sp\` - total points, caps and destruction \n\`scout\` - total hours, kills and damage as scout \n\`soldier\` - total hours, kills and damage as soldier \n\`pyro\` - total hours, kills and damage as pyro \n\`demo\` - total hours, kills and damage as demoman \n\`heavy\` - total hours, kills and damage as heavy \n\`engi\` - total hours, kills and damage as engineer \n\`med\` - total hours, healing, and ubers as medic \n\`sniper\` - total hours, kills and damage as sniper \n\`spy\` - total hours, kills and damage as spy \n \n *if you have any problems with the nectar bot, please contact bumble#8029*";
