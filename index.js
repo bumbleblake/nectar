@@ -483,6 +483,7 @@ client.on("message", async message => {
                var id64 = result;
                if(j) id64 = usern;
                 var id3 = (new SteamID(id64)).steam3();
+                var id2 = (new SteamID(id64)).steam2();
                 steam.getUserSummary(id64).then(summary => {
                 var dpma = 0;
                 var dpm = [];
@@ -513,7 +514,7 @@ client.on("message", async message => {
                             fetch(`http://logs.tf/api/v1/log/${json.logs[i].id.toString()}`)
                                 .then(res2 => res2.json())
                                 .then(json2 => { 
-                                    var pl = json2.players[Object.keys(json2.players)[Object.keys(json2.players).indexOf(`${id3}`)]]
+                                    var pl = json2.players[Object.keys(json2.players)[Object.keys(json2.players).indexOf(`${id3}`)]] || json2.players[Object.keys(json2.players)[Object.keys(json2.players).indexOf(`${id2}`)]]
                                         kills += pl.kills;
                                         deaths += pl.deaths;
                                         dmg += pl.dmg;
