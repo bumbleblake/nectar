@@ -28,10 +28,13 @@ client.on("message", async message => {
     if (message.author.bot) return;
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-    if(message.channel.type != 'dm'){
+    if(message.channel.type == 'dm' || message.channel.type == "text"){
     if((message.content.indexOf(prefix) == 0)){
         if(command === "stats"){
-            if(!args[1]) var usern = message.member.displayName.toString();
+            if(!args[1]) {
+                if(message.channel.type == "text") var usern = message.member.displayName.toString()
+                if(message.channel.type == "dm") var usern = message.author.username;    
+            }
             else var usern = args[1]
             if(!args[0]) var type = "overall"
             else var type = args[0]
