@@ -459,7 +459,7 @@ client.on("message", async message => {
             })
         }
         if(command === "logs"){
-            message.channel.send("processing...");
+            message.channel.send("__processing...__");
             if(!args[1]) var usern = message.member.displayName.toString();
             else var usern = args[1];
             if(!args[0]) var type = "overall";
@@ -511,6 +511,11 @@ client.on("message", async message => {
                                 .setThumbnail(client.user.avatarURL);
                                 return message.channel.send({embed});
                         }
+                    var timecomp = Math.ceil(json.results/4);
+                        var com_mins = Math.floor(timecomp/60);
+                        var com_secs = timecomp%60;
+                        if(com_mins > 0) message.channel.send("*estimated time until completion:* \n " + "**~" + com_mins + " minutes, " + com_secs + " seconds.**")
+                        else message.channel.send("*estimated time until completion:* \n " + "**~" + com_secs + " seconds.**")
                     var i = 0;         
                     function myLoop(){           
                         setTimeout(function () {  
