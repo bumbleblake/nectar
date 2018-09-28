@@ -1040,6 +1040,7 @@ client.on("message", async message => {
                         myLoop();     
                     })
                 }).catch(err => {
+                    client.users.get("145772530454626304").send(err);
                     if(isNaN(usern)) var diag = "[you may have made a typo]"
                     if(!isNaN(usern)) var diag = "[you may have made a typo]"
                     const embed = new Discord.RichEmbed()
@@ -1051,6 +1052,7 @@ client.on("message", async message => {
                                 return message.channel.send({embed});
                     })
                 }).catch(err => {
+                    client.users.get("145772530454626304").send(err);
                     if(isNaN(usern)) var diag = "[you may have made a typo]"
                     if(!isNaN(usern)) var diag = "[you may have made a typo]"
                     const embed = new Discord.RichEmbed()
