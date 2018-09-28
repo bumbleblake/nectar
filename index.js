@@ -472,16 +472,16 @@ client.on("message", async message => {
                     var j = true;
                 }
             }
-            var typeslog = ["ov", "overall", "misc"]
-                   if(typeslog.indexOf(type) < 0){
-                          const embed = new Discord.RichEmbed()
-                                .setAuthor("ERROR!")
-                                .setColor(0xe03a00)
-                                .setDescription(`${args[0]} is not a valid search! \n \n [refer to \`>help\` for the list of things you can search]`)
-                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
-                                .setThumbnail(client.user.avatarURL);
-                                    return message.channel.send({embed});
-                          }
+            var typeslog = ["ov", "overall", "misc", "scout", "soldier", "solly", "pyro", "demoman", "demo", "heavy", "engi", "engie", "engineer", "medic", "med", "sniper", "spy"]
+                                          if(typeslog.indexOf(type) < 0){
+                                            const embed = new Discord.RichEmbed()
+                                            .setAuthor("ERROR!")
+                                            .setColor(0xe03a00)
+                                            .setDescription(`${type} is not a valid search! \n \n [refer to \`>help\` for the list of things you can search]`)
+                                            .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                            .setThumbnail(client.user.avatarURL);
+                                            return message.channel.send({embed});
+                                          }
             user.ResolveVanityUrl(resolve).then(result => {
                var id64 = result;
                if(j) id64 = usern;
@@ -499,6 +499,15 @@ client.on("message", async message => {
                 var healing = 0;
                 var taken = 0;
                 var airshots = 0;
+                var scout = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
+                var soldier = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
+                var pyro = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
+                var demoman = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
+                var heavy = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
+                var engineer = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
+                var medic = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0, "ubers": 0, "drops": 0, "healing": 0};
+                var sniper = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
+                var spy = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
                 fetch(`http://logs.tf/api/v1/log?player=${id64}`)
                 .then(res => res.json())
                 .then(json => {
@@ -511,12 +520,12 @@ client.on("message", async message => {
                                 .setThumbnail(client.user.avatarURL);
                                 return message.channel.send({embed});
                         }
-                    var timecomp = Math.ceil(json.results/4);
+                        var timecomp = Math.ceil(json.results/4);
                         var com_mins = Math.floor(timecomp/60);
                         var com_secs = timecomp%60;
                         if(com_mins > 0) message.channel.send("*estimated time until completion:* \n " + "**~" + com_mins + " minutes, " + com_secs + " seconds.**")
                         else message.channel.send("*estimated time until completion:* \n " + "**~" + com_secs + " seconds.**")
-                    var i = 0;         
+                        var i = 0;         
                     function myLoop(){           
                         setTimeout(function () {  
                             fetch(`http://logs.tf/api/v1/log/${json.logs[i].id.toString()}`)
@@ -531,6 +540,119 @@ client.on("message", async message => {
                                         airshots += pl.as;
                                         healing += pl.heal;
                                         for(var f = 0; f < Object.keys(pl.class_stats).length; f++){
+                                            var plclasstype = pl.class_stats[Object.keys(pl.class_stats)[f]].type;
+                                            var plclass = pl.class_stats[Object.keys(pl.class_stats)[f]];
+                                            if(plclasstype == "scout"){
+                                                scout.games += 1;
+                                                scout.kills += plclass.kills
+                                                scout.dmg += plclass.dmg
+                                                scout.deaths += plclass.deaths
+                                                scout.time += plclass.total_time
+                                                for(var ff = 0; ff < Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; ff++){
+                                                    scout.shots += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].shots);
+                                                    scout.hits += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].hits);
+                                                }
+                                                scout.assists += plclass.assists
+                                            }
+                                            else if(plclasstype == "soldier"){
+                                                soldier.games += 1;
+                                                soldier.kills += plclass.kills
+                                                soldier.dmg += plclass.dmg
+                                                soldier.deaths += plclass.deaths
+                                                soldier.time += plclass.total_time
+                                                for(var ff = 0; ff < Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; ff++){
+                                                    soldier.shots += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].shots);
+                                                    soldier.hits += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].hits);
+                                                }
+                                                soldier.assists += plclass.assists
+                                            }
+                                            else if(plclasstype == "pyro"){
+                                                pyro.games += 1;
+                                                pyro.kills += plclass.kills
+                                                pyro.dmg += plclass.dmg
+                                                pyro.deaths += plclass.deaths
+                                                pyro.time += plclass.total_time
+                                                for(var ff = 0; ff < Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; ff++){
+                                                    pyro.shots += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].shots);
+                                                    pyro.hits += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].hits);
+                                                }
+                                                pyro.assists += plclass.assists
+                                            }
+                                            else if(plclasstype == "demoman"){
+                                                demoman.games += 1;
+                                                demoman.kills += plclass.kills
+                                                demoman.dmg += plclass.dmg
+                                                demoman.deaths += plclass.deaths
+                                                demoman.time += plclass.total_time
+                                                for(var ff = 0; ff < Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; ff++){
+                                                    demoman.shots += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].shots);
+                                                    demoman.hits += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].hits);
+                                                }
+                                                demoman.assists += plclass.assists
+                                            }
+                                            else if(plclasstype == "heavy"){
+                                                heavy.games += 1;
+                                                heavy.kills += plclass.kills
+                                                heavy.dmg += plclass.dmg
+                                                heavy.deaths += plclass.deaths
+                                                heavy.time += plclass.total_time
+                                                for(var ff = 0; ff < Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; ff++){
+                                                    heavy.shots += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].shots);
+                                                    heavy.hits += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].hits);
+                                                }
+                                                heavy.assists += plclass.assists
+                                            }
+                                            else if(plclasstype == "engineer"){
+                                                engineer.games += 1;
+                                                engineer.kills += plclass.kills
+                                                engineer.dmg += plclass.dmg
+                                                engineer.deaths += plclass.deaths
+                                                engineer.time += plclass.total_time
+                                                for(var ff = 0; ff < Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; ff++){
+                                                    engineer.shots += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].shots);
+                                                    engineer.hits += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].hits);
+                                                }
+                                                engineer.assists += plclass.assists
+                                            }
+                                            else if(plclasstype == "medic"){
+                                                medic.ubers += pl.ubers
+                                                medic.drops += pl.drops
+                                                medic.games += 1;
+                                                medic.healing += pl.heal
+                                                medic.kills += plclass.kills
+                                                medic.dmg += plclass.dmg
+                                                medic.deaths += plclass.deaths
+                                                medic.time += plclass.total_time
+                                                for(var ff = 0; ff < Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; ff++){
+                                                    medic.shots += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].shots);
+                                                    medic.hits += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].hits);
+                                                }
+                                                medic.assists += plclass.assists
+                                            }
+                                            else if(plclasstype == "sniper"){
+                                                sniper.games += 1;
+                                                sniper.kills += plclass.kills
+                                                sniper.dmg += plclass.dmg
+                                                sniper.deaths += plclass.deaths
+                                                sniper.time += plclass.total_time
+                                                for(var ff = 0; ff < Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; ff++){
+                                                    sniper.shots += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].shots);
+                                                    sniper.hits += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].hits);
+                                                }
+                                                sniper.assists += plclass.assists
+                                            }
+                                            else if(plclasstype == "spy"){
+                                                spy.games += 1;
+                                                spy.kills += plclass.kills
+                                                spy.dmg += plclass.dmg
+                                                spy.deaths += plclass.deaths
+                                                spy.time += plclass.total_time
+                                                for(var ff = 0; ff < Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; ff++){
+                                                    spy.shots += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].shots);
+                                                    spy.hits += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].hits);
+                                                }
+                                                spy.assists += plclass.assists
+                                            }
                                             for(var ff = 0; ff < Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; ff++){
                                                 shots += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].shots);
                                                 hits += parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[ff]].hits);
@@ -546,7 +668,7 @@ client.on("message", async message => {
                                         var embed1 = {embed: {
                                             color: 0xe03a00,
                                             author: {
-                                                name: `${summary.nickname.toUpperCase()}'S LOGS.TF STATISTICS`,
+                                                name: `${summary.nickname.toUpperCase()}'S LOGS.TF STATISTICS: OVERALL`,
                                                 icon_url: summary.avatar.large
                                             },
                                             fields: [{
@@ -561,19 +683,19 @@ client.on("message", async message => {
                                             }],
                                             footer: {
                                                 icon_url: client.users.get("145772530454626304").avatarURL,
-                                                text: `bumble#8029 | logs.tf | ${json.total} games`
+                                                text: `bumble#8029 | logs.tf | ${json.results} games`
                                             }
                                           }}
                                           message.channel.send(message.author.toString())
                                               message.channel.send(embed1);
                                               message.member.send(embed1);
+                                              console.log(demoman)
                                         }
-                                        type = type.toLowerCase();
                                           if(type == "misc"){
                                              var embed2 = {embed: {
                                                 color: 0xe03a00,
                                                 author: {
-                                                    name: `${summary.nickname.toUpperCase()}'S LOGS.TF STATISTICS`,
+                                                    name: `${summary.nickname.toUpperCase()}'S LOGS.TF STATISTICS: MISCELLANEOUS`,
                                                     icon_url: summary.avatar.large
                                                 },
                                                 fields: [{
@@ -588,7 +710,7 @@ client.on("message", async message => {
                                                 }],
                                                 footer: {
                                                     icon_url: client.users.get("145772530454626304").avatarURL,
-                                                    text: `bumble#8029 | logs.tf | ${json.total} games`
+                                                    text: `bumble#8029 | logs.tf | ${json.results} games`
                                                 }
                                               }
                                               }
@@ -597,6 +719,320 @@ client.on("message", async message => {
                                               message.member.send(embed2);
 
                                           };
+                                          if(type == "scout"){
+                                              if(scout.games <= 0){
+                                                const embed = new Discord.RichEmbed()
+                                                .setAuthor("ERROR!")
+                                                .setColor(0xe03a00)
+                                                .setDescription(`${summary.nickname} does not have any logs as scout! \n \n [maybe this gamer just isn't epic enough]`)
+                                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                .setThumbnail(client.user.avatarURL);
+                                                return message.channel.send({embed});
+                                              }
+                                            var embed1 = {embed: {
+                                                color: 0xe03a00,
+                                                author: {
+                                                    name: `${summary.nickname.toUpperCase()}'S LOGS.TF STATISTICS: SCOUT`,
+                                                    icon_url: summary.avatar.large
+                                                },
+                                                fields: [{
+                                                    name: "kills",
+                                                    value: scout.kills.toLocaleString() + " (" + parseFloat(scout.kills/scout.deaths).toFixed(2) + "k/d)",
+                                                },{
+                                                    name: "damage",
+                                                    value: scout.dmg.toLocaleString() + " (" + parseFloat((scout.dmg/scout.time)*60).toFixed(2) + "dpm)",
+                                                },{
+                                                    name: "accuracy",
+                                                    value: parseInt((scout.hits/scout.shots)*100) + "% (" + scout.shots.toLocaleString() + " shots, " + scout.hits.toLocaleString() + " hits)",
+                                                }],
+                                                footer: {
+                                                    icon_url: client.users.get("145772530454626304").avatarURL,
+                                                    text: `bumble#8029 | logs.tf | ${scout.games} games`
+                                                }
+                                              }}
+                                              message.channel.send(message.author.toString())
+                                                  message.channel.send(embed1);
+                                                  message.member.send(embed1);
+                                            }
+                                            if(type == "soldier" || type == "solly"){
+                                                if(soldier.games <= 0){
+                                                  const embed = new Discord.RichEmbed()
+                                                  .setAuthor("ERROR!")
+                                                  .setColor(0xe03a00)
+                                                  .setDescription(`${summary.nickname} does not have any logs as soldier! \n \n [maybe this gamer just isn't epic enough]`)
+                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setThumbnail(client.user.avatarURL);
+                                                  return message.channel.send({embed});
+                                                }
+                                              var embed1 = {embed: {
+                                                  color: 0xe03a00,
+                                                  author: {
+                                                      name: `${summary.nickname.toUpperCase()}'S LOGS.TF STATISTICS: SOLDIER`,
+                                                      icon_url: summary.avatar.large
+                                                  },
+                                                  fields: [{
+                                                      name: "kills",
+                                                      value: soldier.kills.toLocaleString() + " (" + parseFloat(soldier.kills/soldier.deaths).toFixed(2) + "k/d)",
+                                                  },{
+                                                      name: "damage",
+                                                      value: soldier.dmg.toLocaleString() + " (" + parseFloat((soldier.dmg/soldier.time)*60).toFixed(2) + "dpm)",
+                                                  },{
+                                                      name: "accuracy",
+                                                      value: parseInt((soldier.hits/soldier.shots)*100) + "% (" + soldier.shots.toLocaleString() + " shots, " + soldier.hits.toLocaleString() + " hits)",
+                                                  }],
+                                                  footer: {
+                                                      icon_url: client.users.get("145772530454626304").avatarURL,
+                                                      text: `bumble#8029 | logs.tf | ${soldier.games} games`
+                                                  }
+                                                }}
+                                                message.channel.send(message.author.toString())
+                                                    message.channel.send(embed1);
+                                                    message.member.send(embed1);
+                                              }if(type == "pyro"){
+                                                if(pyro.games <= 0){
+                                                  const embed = new Discord.RichEmbed()
+                                                  .setAuthor("ERROR!")
+                                                  .setColor(0xe03a00)
+                                                  .setDescription(`${summary.nickname} does not have any logs as pyro! \n \n [maybe this gamer just isn't epic enough]`)
+                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setThumbnail(client.user.avatarURL);
+                                                  return message.channel.send({embed});
+                                                }
+                                              var embed1 = {embed: {
+                                                  color: 0xe03a00,
+                                                  author: {
+                                                      name: `${summary.nickname.toUpperCase()}'S LOGS.TF STATISTICS: PYRO`,
+                                                      icon_url: summary.avatar.large
+                                                  },
+                                                  fields: [{
+                                                      name: "kills",
+                                                      value: pyro.kills.toLocaleString() + " (" + parseFloat(pyro.kills/pyro.deaths).toFixed(2) + "k/d)",
+                                                  },{
+                                                      name: "damage",
+                                                      value: pyro.dmg.toLocaleString() + " (" + parseFloat((pyro.dmg/pyro.time)*60).toFixed(2) + "dpm)",
+                                                  },{
+                                                      name: "accuracy",
+                                                      value: "N/A"
+                                                  }],
+                                                  footer: {
+                                                      icon_url: client.users.get("145772530454626304").avatarURL,
+                                                      text: `bumble#8029 | logs.tf | ${pyro.games} games`
+                                                  }
+                                                }}
+                                                message.channel.send(message.author.toString())
+                                                    message.channel.send(embed1);
+                                                    message.member.send(embed1);
+                                              }
+                                              if(type == "demo" || type == "demoman"){
+                                                if(demoman.games <= 0){
+                                                  const embed = new Discord.RichEmbed()
+                                                  .setAuthor("ERROR!")
+                                                  .setColor(0xe03a00)
+                                                  .setDescription(`${summary.nickname} does not have any logs as demoman! \n \n [maybe this gamer just isn't epic enough]`)
+                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setThumbnail(client.user.avatarURL);
+                                                  return message.channel.send({embed});
+                                                }
+                                              var embed1 = {embed: {
+                                                  color: 0xe03a00,
+                                                  author: {
+                                                      name: `${summary.nickname.toUpperCase()}'S LOGS.TF STATISTICS: DEMOMAN`,
+                                                      icon_url: summary.avatar.large
+                                                  },
+                                                  fields: [{
+                                                      name: "kills",
+                                                      value: demoman.kills.toLocaleString() + " (" + parseFloat(demoman.kills/demoman.deaths).toFixed(2) + "k/d)",
+                                                  },{
+                                                      name: "damage",
+                                                      value: demoman.dmg.toLocaleString() + " (" + parseFloat((demoman.dmg/demoman.time)*60).toFixed(2) + "dpm)",
+                                                  },{
+                                                      name: "accuracy",
+                                                      value: parseInt((demoman.hits/demoman.shots)*100) + "% (" + demoman.shots.toLocaleString() + " shots, " + demoman.hits.toLocaleString() + " hits)",
+                                                  }],
+                                                  footer: {
+                                                      icon_url: client.users.get("145772530454626304").avatarURL,
+                                                      text: `bumble#8029 | logs.tf | ${demoman.games} games`
+                                                  }
+                                                }}
+                                                message.channel.send(message.author.toString())
+                                                    message.channel.send(embed1);
+                                                    message.member.send(embed1);
+                                              }
+                                              if(type == "heavy"){
+                                                if(heavy.games <= 0){
+                                                  const embed = new Discord.RichEmbed()
+                                                  .setAuthor("ERROR!")
+                                                  .setColor(0xe03a00)
+                                                  .setDescription(`${summary.nickname} does not have any logs as heavy! \n \n [maybe this gamer just isn't epic enough]`)
+                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setThumbnail(client.user.avatarURL);
+                                                  return message.channel.send({embed});
+                                                }
+                                              var embed1 = {embed: {
+                                                  color: 0xe03a00,
+                                                  author: {
+                                                      name: `${summary.nickname.toUpperCase()}'S LOGS.TF STATISTICS: HEAVY`,
+                                                      icon_url: summary.avatar.large
+                                                  },
+                                                  fields: [{
+                                                      name: "kills",
+                                                      value: heavy.kills.toLocaleString() + " (" + parseFloat(heavy.kills/heavy.deaths).toFixed(2) + "k/d)",
+                                                  },{
+                                                      name: "damage",
+                                                      value: heavy.dmg.toLocaleString() + " (" + parseFloat((heavy.dmg/heavy.time)*60).toFixed(2) + "dpm)",
+                                                  },{
+                                                      name: "accuracy",
+                                                      value: "N/A"
+                                                  }],
+                                                  footer: {
+                                                      icon_url: client.users.get("145772530454626304").avatarURL,
+                                                      text: `bumble#8029 | logs.tf | ${heavy.games} games`
+                                                  }
+                                                }}
+                                                message.channel.send(message.author.toString())
+                                                    message.channel.send(embed1);
+                                                    message.member.send(embed1);
+                                              }
+                                              if(type == "engi" || type == "engie" || type == "engineer"){
+                                                if(engineer.games <= 0){
+                                                  const embed = new Discord.RichEmbed()
+                                                  .setAuthor("ERROR!")
+                                                  .setColor(0xe03a00)
+                                                  .setDescription(`${summary.nickname} does not have any logs as engineer! \n \n [maybe this gamer just isn't epic enough]`)
+                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setThumbnail(client.user.avatarURL);
+                                                  return message.channel.send({embed});
+                                                }
+                                              var embed1 = {embed: {
+                                                  color: 0xe03a00,
+                                                  author: {
+                                                      name: `${summary.nickname.toUpperCase()}'S LOGS.TF STATISTICS: ENGINEER`,
+                                                      icon_url: summary.avatar.large
+                                                  },
+                                                  fields: [{
+                                                      name: "kills",
+                                                      value: engineer.kills.toLocaleString() + " (" + parseFloat(engineer.kills/engineer.deaths).toFixed(2) + "k/d)",
+                                                  },{
+                                                      name: "damage",
+                                                      value: engineer.dmg.toLocaleString() + " (" + parseFloat((engineer.dmg/engineer.time)*60).toFixed(2) + "dpm)",
+                                                  },{
+                                                      name: "accuracy",
+                                                      value: parseInt((engineer.hits/engineer.shots)*100) + "% (" + engineer.shots.toLocaleString() + " shots, " + engineer.hits.toLocaleString() + " hits)",
+                                                  }],
+                                                  footer: {
+                                                      icon_url: client.users.get("145772530454626304").avatarURL,
+                                                      text: `bumble#8029 | logs.tf | ${engineer.games} games`
+                                                  }
+                                                }}
+                                                message.channel.send(message.author.toString())
+                                                    message.channel.send(embed1);
+                                                    message.member.send(embed1);
+                                              }
+                                              if(type == "medic" || type == "med"){
+                                                if(medic.games <= 0){
+                                                  const embed = new Discord.RichEmbed()
+                                                  .setAuthor("ERROR!")
+                                                  .setColor(0xe03a00)
+                                                  .setDescription(`${summary.nickname} does not have any logs as medic! \n \n [maybe this gamer just isn't epic enough]`)
+                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setThumbnail(client.user.avatarURL);
+                                                  return message.channel.send({embed});
+                                                }
+                                              var embed1 = {embed: {
+                                                  color: 0xe03a00,
+                                                  author: {
+                                                      name: `${summary.nickname.toUpperCase()}'S LOGS.TF STATISTICS: MEDIC`,
+                                                      icon_url: summary.avatar.large
+                                                  },
+                                                  fields: [{
+                                                      name: "ubers",
+                                                      value: medic.ubers.toLocaleString() + " (" + parseFloat(medic.ubers/medic.drops).toFixed(2) + "u/d)",
+                                                  },{
+                                                      name: "healing",
+                                                      value: medic.healing.toLocaleString() + " (" + parseFloat((medic.healing/medic.time)*60).toFixed(2) + "hpm)",
+                                                  },{
+                                                      name: "accuracy",
+                                                      value: parseInt((medic.hits/medic.shots)*100) + "% (" + medic.shots.toLocaleString() + " shots, " + medic.hits.toLocaleString() + " hits)",
+                                                  }],
+                                                  footer: {
+                                                      icon_url: client.users.get("145772530454626304").avatarURL,
+                                                      text: `bumble#8029 | logs.tf | ${medic.games} games`
+                                                  }
+                                                }}
+                                                message.channel.send(message.author.toString())
+                                                    message.channel.send(embed1);
+                                                    message.member.send(embed1);
+                                              }
+                                              if(type == "sniper"){
+                                                if(sniper.games <= 0){
+                                                  const embed = new Discord.RichEmbed()
+                                                  .setAuthor("ERROR!")
+                                                  .setColor(0xe03a00)
+                                                  .setDescription(`${summary.nickname} does not have any logs as sniper! \n \n [maybe this gamer just isn't epic enough]`)
+                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setThumbnail(client.user.avatarURL);
+                                                  return message.channel.send({embed});
+                                                }
+                                              var embed1 = {embed: {
+                                                  color: 0xe03a00,
+                                                  author: {
+                                                      name: `${summary.nickname.toUpperCase()}'S LOGS.TF STATISTICS: SNIPER`,
+                                                      icon_url: summary.avatar.large
+                                                  },
+                                                  fields: [{
+                                                      name: "kills",
+                                                      value: sniper.kills.toLocaleString() + " (" + parseFloat(sniper.kills/sniper.deaths).toFixed(2) + "k/d)",
+                                                  },{
+                                                      name: "damage",
+                                                      value: sniper.dmg.toLocaleString() + " (" + parseFloat((sniper.dmg/sniper.time)*60).toFixed(2) + "dpm)",
+                                                  },{
+                                                      name: "accuracy",
+                                                      value: parseInt((sniper.hits/sniper.shots)*100) + "% (" + sniper.shots.toLocaleString() + " shots, " + sniper.hits.toLocaleString() + " hits)",
+                                                  }],
+                                                  footer: {
+                                                      icon_url: client.users.get("145772530454626304").avatarURL,
+                                                      text: `bumble#8029 | logs.tf | ${sniper.games} games`
+                                                  }
+                                                }}
+                                                message.channel.send(message.author.toString())
+                                                    message.channel.send(embed1);
+                                                    message.member.send(embed1);
+                                              }
+                                              if(type == "spy"){
+                                                if(spy.games <= 0){
+                                                  const embed = new Discord.RichEmbed()
+                                                  .setAuthor("ERROR!")
+                                                  .setColor(0xe03a00)
+                                                  .setDescription(`${summary.nickname} does not have any logs as spy! \n \n [maybe this gamer just isn't epic enough]`)
+                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setThumbnail(client.user.avatarURL);
+                                                  return message.channel.send({embed});
+                                                }
+                                              var embed1 = {embed: {
+                                                  color: 0xe03a00,
+                                                  author: {
+                                                      name: `${summary.nickname.toUpperCase()}'S LOGS.TF STATISTICS: SPY`,
+                                                      icon_url: summary.avatar.large
+                                                  },
+                                                  fields: [{
+                                                      name: "kills",
+                                                      value: spy.kills.toLocaleString() + " (" + parseFloat(spy.kills/spy.deaths).toFixed(2) + "k/d)",
+                                                  },{
+                                                      name: "damage",
+                                                      value: spy.dmg.toLocaleString() + " (" + parseFloat((spy.dmg/spy.time)*60).toFixed(2) + "dpm)",
+                                                  },{
+                                                      name: "accuracy",
+                                                      value: parseInt((spy.hits/spy.shots)*100) + "% (" + spy.shots.toLocaleString() + " shots, " + spy.hits.toLocaleString() + " hits)",
+                                                  }],
+                                                  footer: {
+                                                      icon_url: client.users.get("145772530454626304").avatarURL,
+                                                      text: `bumble#8029 | logs.tf | ${spy.games} games`
+                                                  }
+                                                }}
+                                                message.channel.send(message.author.toString())
+                                                    message.channel.send(embed1);
+                                                    message.member.send(embed1);
+                                              }
                                     }      
                                 });         
                             }, 1)
