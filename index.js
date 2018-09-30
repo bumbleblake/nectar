@@ -489,6 +489,7 @@ client.on("message", async message => {
                 var id2 = (new SteamID(id64)).steam2();
                 steam.getUserSummary(id64).then(summary => {
                 var dpma = 0;
+                var fp;
                 var dpm = [];
                 var kills = 0;
                 var deaths = 0;
@@ -520,14 +521,31 @@ client.on("message", async message => {
                                 .setThumbnail(client.user.avatarURL);
                                 return message.channel.send({embed});
                         }
-                        var timecomp = Math.ceil(json.results/4);
+                        if(!args[2])var cap = json.results;
+                        else{ 
+                            if(!isNaN(args[2]) || parseInt(args[2]) < 1) var cap = parseInt(args[2])
+                            else {
+                                const embed = new Discord.RichEmbed()
+                                    .setAuthor("ERROR!")
+                                    .setColor(0xe03a00)
+                                    .setDescription(`${args[2]} is not a valid amount of games! \n \n [please enter a valid number greater than 0]`)
+                                    .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                    .setThumbnail(client.user.avatarURL);
+                                    return message.channel.send({embed});
+                            }
+                        }
+                        if(cap > json.results) cap = json.results;
+                        if(type != "ov" && type != "overall" && type != "misc" && typeslog.indexOf(type) != -1 && cap != json.results){ 
+                            var timecomp = Math.ceil(Math.ceil(cap*2.5)/4)
+                        }
+                        else var timecomp = Math.ceil(cap/4);
                         var com_mins = Math.floor(timecomp/60);
                         var com_secs = timecomp%60;
                         if(com_mins > 0) message.channel.send("*estimated time until completion:* \n " + "**~" + com_mins + " minutes, " + com_secs + " seconds.**")
                         else message.channel.send("*estimated time until completion:* \n " + "**~" + com_secs + " seconds.**")
                         var i = 0;         
                     function myLoop(){           
-                        setTimeout(function () {  
+                        setTimeout(function () {
                             fetch(`http://logs.tf/api/v1/log/${json.logs[i].id.toString()}`)
                                 .then(res2 => res2.json())
                                 .then(json2 => { 
@@ -660,10 +678,18 @@ client.on("message", async message => {
                                         }
                                         dpm.push(pl.dapm)
                                         dpma += pl.dapm;
-                                        i++;                     
-                                    if (i < json.results) {            
-                                        myLoop();              
-                                    }else if(i == json.results){
+                                        i++;       
+                                        if(type == "ov" || type == "overall" || type == "misc") fp = i; 
+                                                 if(type == "scout") fp = scout.games
+                            if(type == "soldier" || type == "solly") fp = soldier.games
+                                                  if(type == "pyro") fp = pyro.games
+                             if(type == "demoman" || type == "demo") fp = demoman.games
+                                                 if(type == "heavy") fp = heavy.games
+         if(type == "engi" || type == "engie" || type == "engineer") fp = engineer.games
+                                if(type == "med" || type == "medic") fp = medic.games
+                                                if(type == "sniper") fp = sniper.games
+                                                   if(type == "spy") fp = spy.games               
+                                    if(i == json.results || fp == cap){
                                         if(type == "ov" || type == "overall"){
                                         var embed1 = {embed: {
                                             color: 0xe03a00,
@@ -683,13 +709,12 @@ client.on("message", async message => {
                                             }],
                                             footer: {
                                                 icon_url: client.users.get("145772530454626304").avatarURL,
-                                                text: `bumble#8029 | logs.tf | ${json.results} games`
+                                                text: `bumble#8029 | logs.tf | ${cap} games`
                                             }
                                           }}
                                           message.channel.send(message.author.toString())
                                               message.channel.send(embed1);
                                               message.member.send(embed1);
-                                              console.log(demoman)
                                         }
                                           if(type == "misc"){
                                              var embed2 = {embed: {
@@ -710,7 +735,7 @@ client.on("message", async message => {
                                                 }],
                                                 footer: {
                                                     icon_url: client.users.get("145772530454626304").avatarURL,
-                                                    text: `bumble#8029 | logs.tf | ${json.results} games`
+                                                    text: `bumble#8029 | logs.tf | ${cap} games`
                                                 }
                                               }
                                               }
@@ -1033,14 +1058,15 @@ client.on("message", async message => {
                                                     message.channel.send(embed1);
                                                     message.member.send(embed1);
                                               }
-                                    }      
+                                    } else if (i < json.results && fp < cap) {            
+                                        myLoop();              
+                                    }  
                                 });         
                             }, 1)
                         }
                         myLoop();     
                     })
                 }).catch(err => {
-                    client.users.get("145772530454626304").send(err);
                     if(isNaN(usern)) var diag = "[you may have made a typo]"
                     if(!isNaN(usern)) var diag = "[you may have made a typo]"
                     const embed = new Discord.RichEmbed()
@@ -1052,7 +1078,6 @@ client.on("message", async message => {
                                 return message.channel.send({embed});
                     })
                 }).catch(err => {
-                    client.users.get("145772530454626304").send(err);
                     if(isNaN(usern)) var diag = "[you may have made a typo]"
                     if(!isNaN(usern)) var diag = "[you may have made a typo]"
                     const embed = new Discord.RichEmbed()
