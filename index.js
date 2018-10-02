@@ -536,9 +536,9 @@ client.on("message", async message => {
                         }
                         if(cap > json.results) cap = json.results;
                         if(type != "ov" && type != "overall" && type != "misc" && typeslog.indexOf(type) != -1 && cap != json.results){ 
-                            var timecomp = Math.ceil(Math.ceil(cap*2.5)/4)
+                            var timecomp = Math.ceil(Math.ceil(cap*1.73)/5)
                         }
-                        else var timecomp = Math.ceil(cap/4);
+                        else var timecomp = Math.ceil(cap/5);
                         var com_mins = Math.floor(timecomp/60);
                         var com_secs = timecomp%60;
                         if(com_mins > 0) message.channel.send("*estimated time until completion:* \n " + "**~" + com_mins + " minutes, " + com_secs + " seconds.**")
