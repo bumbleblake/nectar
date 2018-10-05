@@ -734,8 +734,8 @@ client.on("message", async message => {
                                             }
                                           }}
                                           message.channel.send(message.author.toString())
-                                              message.channel.send(embed1);
-                                              message.member.send(embed1);
+                                                message.member.send(embed1);
+                                                return message.channel.send(embed1);
                                         }
                                           if(type == "misc"){
                                              var embed2 = {embed: {
@@ -761,8 +761,9 @@ client.on("message", async message => {
                                               }
                                               }
                                               message.channel.send(message.author.toString())
-                                              message.channel.send(embed2);
                                               message.member.send(embed2);
+                                              return message.channel.send(embed2);
+                                              
 
                                           };
                                           if(type == "scout"){
@@ -797,8 +798,8 @@ client.on("message", async message => {
                                                 }
                                               }}
                                               message.channel.send(message.author.toString())
-                                                  message.channel.send(embed1);
-                                                  message.member.send(embed1);
+                                                message.member.send(embed1);
+                                                return message.channel.send(embed1);
                                             }
                                             if(type == "soldier" || type == "solly"){
                                                 if(soldier.games <= 0){
@@ -832,8 +833,8 @@ client.on("message", async message => {
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
-                                                    message.channel.send(embed1);
-                                                    message.member.send(embed1);
+                                                message.member.send(embed1);
+                                                return message.channel.send(embed1);
                                               }if(type == "pyro"){
                                                 if(pyro.games <= 0){
                                                   const embed = new Discord.RichEmbed()
@@ -866,8 +867,8 @@ client.on("message", async message => {
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
-                                                    message.channel.send(embed1);
-                                                    message.member.send(embed1);
+                                                message.member.send(embed1);
+                                                return message.channel.send(embed1);
                                               }
                                               if(type == "demo" || type == "demoman"){
                                                 if(demoman.games <= 0){
@@ -901,8 +902,9 @@ client.on("message", async message => {
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
-                                                    message.channel.send(embed1);
-                                                    message.member.send(embed1);
+                                                message.member.send(embed1);
+                                                return message.channel.send(embed1);
+                                                    
                                               }
                                               if(type == "heavy"){
                                                 if(heavy.games <= 0){
@@ -936,8 +938,8 @@ client.on("message", async message => {
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
-                                                    message.channel.send(embed1);
-                                                    message.member.send(embed1);
+                                                message.member.send(embed1);
+                                                return message.channel.send(embed1);
                                               }
                                               if(type == "engi" || type == "engie" || type == "engineer"){
                                                 if(engineer.games <= 0){
@@ -971,8 +973,8 @@ client.on("message", async message => {
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
-                                                    message.channel.send(embed1);
-                                                    message.member.send(embed1);
+                                                message.member.send(embed1);
+                                                return message.channel.send(embed1);
                                               }
                                               if(type == "medic" || type == "med"){
                                                 if(medic.games <= 0){
@@ -1006,8 +1008,8 @@ client.on("message", async message => {
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
-                                                    message.channel.send(embed1);
-                                                    message.member.send(embed1);
+                                                message.member.send(embed1);
+                                                return message.channel.send(embed1);
                                               }
                                               if(type == "sniper"){
                                                 if(sniper.games <= 0){
@@ -1041,8 +1043,8 @@ client.on("message", async message => {
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
-                                                    message.channel.send(embed1);
-                                                    message.member.send(embed1);
+                                                message.member.send(embed1);
+                                                return message.channel.send(embed1);
                                               }
                                               if(type == "spy"){
                                                 if(spy.games <= 0){
@@ -1076,8 +1078,8 @@ client.on("message", async message => {
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
-                                                    message.channel.send(embed1);
-                                                    message.member.send(embed1);
+                                                message.member.send(embed1);
+                                                return message.channel.send(embed1);
                                               }
                                     } else if (i < json.results && fp < cap) {            
                                         myLoop();              
