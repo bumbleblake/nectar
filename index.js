@@ -1209,7 +1209,7 @@ client.on("message", async message => {
                                 value: message.guild.memberCount.toLocaleString() + " (" + message.guild.members.filter(member => member.user.bot).size + " bots)"
                             },{
                                 name: "created",
-                                value: time.replace(" 201", ", 201").toLowerCase();
+                                value: time.replace(" 201", ", 201").toLowerCase()
                             }],
                             footer: {
                                 icon_url: "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg",
