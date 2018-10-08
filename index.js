@@ -1197,7 +1197,10 @@ client.on("message", async message => {
         if(command === "info"){
                 var time = message.guild.createdAt.toString().slice(4, parseInt(message.guild.createdAt.toString().indexOf(":")-3));
                 var guildcount = client.guilds.size;
-                var guildindex = parseInt(client.guilds.array().findIndex(i => i.id == message.guild.id))+1;
+                var botusers = 0;
+                for(var i = 0; i < client.guilds.size; i++){
+                    botusers += parseInt(client.guilds.array()[i].memberCount);
+                }
                 message.channel.send({embed: {
                             color: 0xe03a00,
                             author: {
@@ -1212,8 +1215,8 @@ client.on("message", async message => {
                                 value: time.replace(" 201", ", 201").toLowerCase()
                             }],
                             footer: {
-                                icon_url: "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg",
-                                text: `bumble#8029 | #${guildindex} out of ${guildcount} servers`
+                                icon_url: client.user.avatarURL,
+                                text: `nectar#7257 | ${guildcount} servers, ${botusers} users`
                             }
                 }})
         }
