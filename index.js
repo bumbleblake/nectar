@@ -1216,6 +1216,8 @@ client.on("message", async message => {
                                 text: `bumble#8029 | #${guildindex} out of ${guildcount} servers`
                             }
                 }})
-        }   
+        }
+    }
+    }   
 })
 client.login(process.env.BOT_TOKEN);
