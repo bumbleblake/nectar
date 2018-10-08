@@ -1194,6 +1194,28 @@ client.on("message", async message => {
                 member.send(help)
                 .then(() => message.reply("Check your DMs for help!")).catch(error => message.reply("Please enable server DMs!"));
         }
-    }}    
+        if(command === "info"){
+                var time = message.guild.createdAt.toString().slice(4, parseInt(message.guild.createdAt.toString().indexOf(":")-3));
+                var guildcount = client.guilds.size;
+                var guildindex = parseInt(client.guilds.array().findIndex(i => i.id == message.guild.id))+1;
+                message.channel.send({embed: {
+                            color: 0xe03a00,
+                            author: {
+                                name: `${message.guild.name.toUpperCase()}: INFO`,
+                                icon_url: message.guild.iconURL
+                            },
+                            fields: [{
+                                name: "members",
+                                value: message.guild.memberCount.toLocaleString() + " (" + message.guild.members.filter(member => member.user.bot).size + " bots)"
+                            },{
+                                name: "created",
+                                value: time.replace(" 201", ", 201").toLowerCase();
+                            }],
+                            footer: {
+                                icon_url: "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg",
+                                text: `bumble#8029 | #${guildindex} out of ${guildcount} servers`
+                            }
+                }})
+        }   
 })
 client.login(process.env.BOT_TOKEN);
