@@ -15,5 +15,8 @@
     "steamapi": "^2.0.2",
     "web-api-steam": "^1.0.8",
     "steamid": "^1.1.0"
+  },
+  "engines": {
+    "node": "10.3.0"
   }
 }
