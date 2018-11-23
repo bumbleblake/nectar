@@ -1233,6 +1233,12 @@ client.on("message", async message => {
                 }})
         }
         if(command === "invite"){
+            var time = message.guild.createdAt.toString().slice(4, parseInt(message.guild.createdAt.toString().indexOf(":")-3));
+                var guildcount = client.guilds.size;
+                var botusers = 0;
+                for(var i = 0; i < client.guilds.size; i++){
+                    botusers += parseInt(client.guilds.array()[i].memberCount);
+                }
             message.channel.send({embed: {
                             color: 0xe03a00,
                             author: {
