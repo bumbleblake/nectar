@@ -556,7 +556,7 @@ client.on("message", async message => {
                         }
                         if(!args[2])var cap = json.results;
                         else{ 
-                            if(!isNaN(args[2]) || parseInt(args[2]) < 1) var cap = parseInt(args[2])
+                            if(!isNaN(args[2]) && parseInt(args[2]) > 0) var cap = parseInt(args[2])
                             else {
                                 const embed = new Discord.RichEmbed()
                                     .setAuthor("ERROR!")
