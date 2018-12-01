@@ -25,8 +25,14 @@ client.on("guildMemberAdd", member => {
         var wlcm_dec = wlcm_msg[Math.round(Math.random()*(wlcm_msg.length-1))]  
         welcome.send(wlcm_dec);
   }
- if(member.guild.id == "458556394858348564"){
+  if(member.guild.id == "458556394858348564"){
         var welcome = client.channels.get('458565595378614292');
+        var wlcm_msg = [`${member.user.toString()} has joined the game.`, `${member.user.toString()} has joined the party.`, `${member.user.toString()} is GOD-LIKE (20).`, `${member.user.toString()} is on a KILLING SPREE (5).`, `${member.user.toString()} is UNSTOPPABLE (10).`, `${member.user.toString()} is on a RAMPAGE (15).`, `${member.user.toString()} was automatically assigned to the RED team.`, `${member.user.toString()} was automatically assigned to the BLU team.`, `${member.user.toString()} joined team RED.`, `${member.user.toString()} joined team BLU.`, `${member.user.toString()} changed team state to READY.`, `${member.user.toString()} captured the central control point.`, `${member.user.toString()} captured RED spire.`, `${member.user.toString()} captured BLU spire`, `${member.user.toString()} captured RED base.` , `${member.user.toString()} captured BLU base`];
+        var wlcm_dec = wlcm_msg[Math.round(Math.random()*(wlcm_msg.length-1))]  
+        welcome.send(wlcm_dec);
+  }
+  if(member.guild.id == "430684522229530634"){
+        var welcome = client.channels.get('431019810545991680');
         var wlcm_msg = [`${member.user.toString()} has joined the game.`, `${member.user.toString()} has joined the party.`, `${member.user.toString()} is GOD-LIKE (20).`, `${member.user.toString()} is on a KILLING SPREE (5).`, `${member.user.toString()} is UNSTOPPABLE (10).`, `${member.user.toString()} is on a RAMPAGE (15).`, `${member.user.toString()} was automatically assigned to the RED team.`, `${member.user.toString()} was automatically assigned to the BLU team.`, `${member.user.toString()} joined team RED.`, `${member.user.toString()} joined team BLU.`, `${member.user.toString()} changed team state to READY.`, `${member.user.toString()} captured the central control point.`, `${member.user.toString()} captured RED spire.`, `${member.user.toString()} captured BLU spire`, `${member.user.toString()} captured RED base.` , `${member.user.toString()} captured BLU base`];
         var wlcm_dec = wlcm_msg[Math.round(Math.random()*(wlcm_msg.length-1))]  
         welcome.send(wlcm_dec);
@@ -41,6 +47,12 @@ client.on("guildMemberRemove", member => {
    }
    if(member.guild.id == "458556394858348564"){
         var welcome = client.channels.get('458565595378614292');
+        var lev_msg = [`**${member.displayName}** left the game (Disconnect by user).`, `**${member.displayName}** left the game (${member.displayName} timed out).`, `**${member.displayName}** left the party.`, `**${member.displayName}** bid farewell, cruel world!`, `**${member.displayName}** fell to a clumsy, painful death.`, `**${member.displayName}** got fatkidded.`, `**${member.displayName}** :(`, `**mute god_** (Score: 20) defeats **${member.displayName}** (Score: 0) in a duel to 20 on Waste Middle [1v1 MGE].`, `**${member.displayName}** down, push last.`];
+        var lev_dec = lev_msg[Math.round(Math.random()*(lev_msg.length-1))]  
+        welcome.send(lev_dec);
+   }
+   if(member.guild.id == "430684522229530634"){
+        var welcome = client.channels.get('431019810545991680');
         var lev_msg = [`**${member.displayName}** left the game (Disconnect by user).`, `**${member.displayName}** left the game (${member.displayName} timed out).`, `**${member.displayName}** left the party.`, `**${member.displayName}** bid farewell, cruel world!`, `**${member.displayName}** fell to a clumsy, painful death.`, `**${member.displayName}** got fatkidded.`, `**${member.displayName}** :(`, `**mute god_** (Score: 20) defeats **${member.displayName}** (Score: 0) in a duel to 20 on Waste Middle [1v1 MGE].`, `**${member.displayName}** down, push last.`];
         var lev_dec = lev_msg[Math.round(Math.random()*(lev_msg.length-1))]  
         welcome.send(lev_dec);
