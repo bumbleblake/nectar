@@ -1134,6 +1134,374 @@ client.on("message", async message => {
                                 return message.channel.send({embed});
                     })
             }
+if(command === "tempus"){
+            function tinc(ranknum){
+                if((ranknum >= 4501 && ranknum <= 5000) || 
+                (ranknum >= 2201 && ranknum <= 2500) || 
+                (ranknum >= 901 && ranknum <= 1000) ||
+                (ranknum >= 441 && ranknum <= 500) ||
+                (ranknum >= 181 && ranknum <= 200) ||
+                (ranknum >= 91 && ranknum <= 100) ||
+                (ranknum >= 46 && ranknum <= 50) ||
+                ranknum == 25 || 
+                ranknum == 20 || 
+                ranknum == 15 || 
+                ranknum == 10){
+                    return "𝙸"
+                }
+                if((ranknum >= 4001 && ranknum <= 4500) || 
+                (ranknum >= 1901 && ranknum <= 2200) || 
+                (ranknum >= 801 && ranknum <= 900) ||
+                (ranknum >= 381 && ranknum <= 440) ||
+                (ranknum >= 161 && ranknum <= 180) ||
+                (ranknum >= 81 && ranknum <= 90) ||
+                (ranknum >= 41 && ranknum <= 45) ||
+                ranknum == 24 || 
+                ranknum == 19 || 
+                ranknum == 14 || 
+                ranknum == 9){
+                    return "𝙸𝙸"
+                }
+                if((ranknum >= 3501 && ranknum <= 4000) || 
+                (ranknum >= 1601 && ranknum <= 1900) || 
+                (ranknum >= 701 && ranknum <= 800) ||
+                (ranknum >= 321 && ranknum <= 380) ||
+                (ranknum >= 141 && ranknum <= 160) ||
+                (ranknum >= 71 && ranknum <= 80) ||
+                (ranknum >= 36 && ranknum <= 40) ||
+                ranknum == 23 || 
+                ranknum == 18 || 
+                ranknum == 13 || 
+                ranknum == 8){
+                    return "𝙸𝙸𝙸"
+                }
+                if((ranknum >= 3001 && ranknum <= 3500) || 
+                (ranknum >= 1301 && ranknum <= 1600) || 
+                (ranknum >= 601 && ranknum <= 700) ||
+                (ranknum >= 261 && ranknum <= 320) ||
+                (ranknum >= 121 && ranknum <= 140) ||
+                (ranknum >= 61 && ranknum <= 70) ||
+                (ranknum >= 31 && ranknum <= 35) ||
+                ranknum == 22 || 
+                ranknum == 17 || 
+                ranknum == 12 || 
+                ranknum == 7){
+                    return "𝙸V"
+                }
+                if((ranknum >= 2501 && ranknum <= 3000) || 
+                (ranknum >= 1001 && ranknum <= 1300) || 
+                (ranknum >= 501 && ranknum <= 600) ||
+                (ranknum >= 201 && ranknum <= 260) ||
+                (ranknum >= 101 && ranknum <= 120) ||
+                (ranknum >= 51 && ranknum <= 60) ||
+                (ranknum >= 26 && ranknum <= 30) ||
+                ranknum == 21 || 
+                ranknum == 16 || 
+                ranknum == 11 || 
+                ranknum == 6){
+                    return "V"
+                }
+                return "";
+            }
+            var typen;
+            if(!args[0]) typen = "o";
+            else typen = args[0];
+            var typearr2 = ["o", "ov", "overall", "s", "solly", "soldier", "d", "demo", "demoman", "sr", "search", "m", "map", "sv", "server"] 
+                if(!typearr2.includes(typen)){
+                    const embed = new Discord.RichEmbed()
+                        .setAuthor("ERROR!")
+                        .setColor(0xe03a00)
+                        .setDescription(`${typen} is not a valid search term! \n \n [refer to \`>help\` for the list of valid search terms]`)
+                        .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                        .setThumbnail(client.user.avatarURL);
+                        return message.channel.send({embed});
+                }
+            if(typen == "o" || typen == "ov" || typen == "overall" || typen == "s" || typen == "solly" || typen == "soldier" || typen == "d" || typen == "demo" || typen == "demoman") var cla = true;
+            if(cla){
+            if(!args[1]) var usern = message.member.displayName.toString();
+            else var usern = args[1];
+            var resolve = usern;
+            if(!isNaN(usern) && usern.length == 17){
+                var sid = new SteamID(usern)
+                if(sid.isValid()){
+                    var resolve = "bumblephat"
+                    var j = true;
+                }
+            }
+            user.ResolveVanityUrl(resolve).then(result => {
+                var id = result.toString();
+                if(j) id = usern;    
+                steam.getUserSummary(id).then(summary => {
+                    var id2 = new SteamID(id).getSteam2RenderedID()
+                    var userb = summary.nickname.toString().replace(/[^\x00-\x7F]/g, "");
+                    console.log(id,id2,usern,summary.nickname.replace(/[^\x00-\x7F]/g, ""));
+            fetch(`https://tempus.xyz/api/search/playersAndMaps/${userb}`)
+                .then(res => res.json())
+                .then(json => {
+                    var selectn = parseInt(json.players.map(function(e) { return e.steamid; }).indexOf(id2));
+                    fetch(`https://tempus.xyz/api/players/id/${json.players[selectn].id}/stats`)
+                        .then(res2 => res2.json())
+                        .then(json2 => {
+                            if(typen == "o" || typen == "ov" || typen == "overall"){
+                                if(json2.wr_stats.map) var wr1 = `(${json2.wr_stats.map.count} WRs) `; else var wr1 = "";
+                                if(json2.wr_stats.course) var wr2 = `(${json2.wr_stats.course.count} WRs) `; else var wr2 = "";
+                                if(json2.wr_stats.bonus) var wr3 = `(${json2.wr_stats.bonus.count} WRs) `; else var wr3 = "";
+                                if(json2.top_stats.map) var tt1 = `(${json2.top_stats.map.count} TTs)`; else var tt1 = "";
+                                if(json2.top_stats.course) var tt2 = `(${json2.top_stats.course.count} TTs)`; else var tt2 = "";
+                                if(json2.top_stats.bonus) var tt3 = `(${json2.top_stats.bonus.count} TTs)`; else var tt3 = "";
+                                if(json2.pr_stats.map) var pr1 = json2.pr_stats.map.count;  else var pr1 = 0;       
+                                if(json2.pr_stats.course) var pr2 = json2.pr_stats.course.count; else var pr2 = 0;   
+                                if(json2.pr_stats.bonus) var pr3 = json2.pr_stats.bonus.count; else var pr3 = 0;
+                                var embed1 = {embed: {
+                                    color: 0xe03a00,
+                                    author: {
+                                        name: `${summary.nickname.toUpperCase()}'S TEMPUS STATISTICS: OVERALL`,
+                                        icon_url: summary.avatar.large
+                                    },
+                                    fields: [{
+                                        name: "global rank",
+                                        value: `#${json2.rank_info.rank.toLocaleString()}/${(parseInt(json2.rank_info.total_ranked)+1).toLocaleString()} (${json2.rank_info.points.toLocaleString()} points)`
+                                    },{
+                                        name: "national rank",
+                                        value: `#${json2.country_rank_info.rank.toLocaleString()}/${(parseInt(json2.country_rank_info.total_ranked)+1).toLocaleString()} (${json2.player_info.country_code})`
+                                    },{
+                                        name: "completions",
+                                        value: `${pr1} maps ${wr1}${tt1} \n ${pr2} courses ${wr2}${tt2} \n ${pr3} bonuses ${wr3}${tt3}`
+                                    }],
+                                    footer: {
+                                        icon_url: client.users.get("145772530454626304").avatarURL,
+                                        text: `bumble#8029 | tempus.xyz`
+                                    }
+                                  }}
+                                  message.channel.send(embed1);
+                            } 
+                            if(typen == "s" || typen == "solly" || typen == "soldier"){
+                                if(json2.class_rank_info['3'].title == null) var title = "unranked";
+                                else var title = json2.class_rank_info['3'].title;
+                                var tincs = tinc(parseInt(json2.class_rank_info['3'].rank))
+                                var embed1 = {embed: {
+                                    color: 0xe03a00,
+                                    author: {
+                                        name: `${json.players[selectn].name.toUpperCase()}'S TEMPUS STATISTICS: SOLDIER`,
+                                        icon_url: summary.avatar.large
+                                    },
+                                    fields: [{
+                                        name: "title",
+                                        value: `${title.toLowerCase()} ${tincs}`
+                                    },{
+                                        name: "global rank",
+                                        value: `#${json2.class_rank_info['3'].rank.toLocaleString()}/${(parseInt(json2.class_rank_info['3'].total_ranked)+1).toLocaleString()} (${json2.class_rank_info['3'].points.toLocaleString()} points)`
+                                    },{
+                                        name: "national rank",
+                                        value: `#${json2.country_class_rank_info['3'].rank.toLocaleString()}/${(parseInt(json2.country_class_rank_info['3'].total_ranked)+1).toLocaleString()} (${json2.player_info.country_code})`
+                                    }],
+                                    footer: {
+                                        icon_url: client.users.get("145772530454626304").avatarURL,
+                                        text: `bumble#8029 | tempus.xyz`
+                                    }
+                                  }}
+                                  message.channel.send(embed1);
+                            }
+                            if(typen == "d" || typen == "demo" || typen == "demoman"){
+                                if(json2.class_rank_info['4'].title == null) var title = "unranked";
+                                else var title = json2.class_rank_info['4'].title;
+                                var tincd = tinc(parseInt(json2.class_rank_info['4'].rank))
+                                var embed1 = {embed: {
+                                    color: 0xe03a00,
+                                    author: {
+                                        name: `${json.players[selectn].name.toUpperCase()}'S TEMPUS STATISTICS: DEMOMAN`,
+                                        icon_url: summary.avatar.large
+                                    },
+                                    fields: [{
+                                        name: "title",
+                                        value: `${title.toLowerCase()} ${tincd}`
+                                    },{
+                                        name: "global rank",
+                                        value: `#${json2.class_rank_info['4'].rank.toLocaleString()}/${(parseInt(json2.class_rank_info['4'].total_ranked)+1).toLocaleString()} (${json2.class_rank_info['4'].points.toLocaleString()} points)`
+                                    },{
+                                        name: "national rank",
+                                        value: `#${json2.country_class_rank_info['4'].rank.toLocaleString()}/${(parseInt(json2.country_class_rank_info['4'].total_ranked)+1).toLocaleString()} (${json2.player_info.country_code})`
+                                    }],
+                                    footer: {
+                                        icon_url: client.users.get("145772530454626304").avatarURL,
+                                        text: `bumble#8029 | tempus.xyz`
+                                    }
+                                  }}
+                                  message.channel.send(embed1);
+                            } 
+                    })
+            }).catch(err => {
+                const embed = new Discord.RichEmbed()
+                    .setAuthor("ERROR!")
+                    .setColor(0xe03a00)
+                    .setDescription(`${summary.nickname} (${usern}) does not have any tempus data! \n \n [this data may be recorded under an alias]`)
+                    .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                    .setThumbnail(summary.avatar.large);
+                    return message.channel.send({embed});
+                    })
+                }).catch(err => {
+                    const embed = new Discord.RichEmbed()
+                        .setAuthor("ERROR!")
+                        .setColor(0xe03a00)
+                        .setDescription(`${userb} is not a valid ID! \n \n [you may have made a typo]`)
+                        .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                        .setThumbnail(client.user.avatarURL);
+                        return message.channel.send({embed});
+                        })
+            }).catch(err => {
+                const embed = new Discord.RichEmbed()
+                    .setAuthor("ERROR!")
+                    .setColor(0xe03a00)
+                    .setDescription(`${usern} is not a valid ID! \n \n [you may have made a typo]`)
+                    .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                    .setThumbnail(client.user.avatarURL);
+                    return message.channel.send({embed});
+                    })
+        }
+        if(typen == "sr"){
+            function reverse(str) {
+                return str.split("").reverse().join("");
+            }
+            function getpos(string, subString, index) {
+                return string.split(subString, index).join(subString).length;
+             }
+            if(!args[1]) var usern = message.member.displayName.toString().replace(/[^\x00-\x7F]/g, "");
+            else {var usern = (args.slice(1, args.length).join("%20")).replace(/[^\x00-\x7F]/g, "");}
+            fetch(`https://tempus.xyz/api/search/playersAndMaps/${usern}`)
+            .then(res => res.json())
+            .then(json => {
+                if(json.players.length == 0){
+                    const embed = new Discord.RichEmbed()
+                    .setAuthor("ERROR!")
+                    .setColor(0xe03a00)
+                    .setDescription(`\"${usern.replace(/(%20)+/g, " ")}\" could not be found! \n \n [their data may be recorded under an alias]`)
+                    .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                    .setThumbnail(client.user.avatarURL);
+                    return message.channel.send({embed});
+                }
+                var cap = json.players.length;
+                if(cap>5)cap=5;
+                var playerarr = [];
+                var namearr = [];
+                var countryarr = [];
+                var rankarr = [];
+                var idarr = [];
+                for(var i = 0; i < cap; i++){
+                    fetch(`https://tempus.xyz/api/players/id/${json.players[i].id}/stats`)
+                        .then(res2 => res2.json())
+                        .then(json2 => {
+                            var id64 = new SteamID(json2.player_info.steamid).getSteamID64();
+                            steam.getUserSummary(id64).then(summary => {
+                            idarr.push(summary.url);
+                            playerarr.push(i)
+                            namearr.push(json2.player_info.name)
+                            countryarr.push(json2.player_info.country_code)
+                            rankarr.push(`${json2.rank_info.rank}/${parseInt(json2.rank_info.total_ranked)+1}`);
+                            if(rankarr.length == cap){
+                            message.channel.sendEmbed({
+                                color: 0xe03a00,
+                                author: {
+                                  name: `TEMPUS SEARCH: ${usern.replace(/(%20)+/g, " ")}`,
+                                  icon_url: client.user.avatarURL,
+                                },
+                                title: "tempus users found with this name:",
+                                fields: 
+                                  playerarr.map((m,index) => ({ name: `__${namearr[index]}__`, value: ` ${idarr[index]} \n ${rankarr[index]} - ${countryarr[index]} \n =================`, inline: false}))
+                                ,
+                              })
+                            }
+                        })
+                    })
+                }   
+            })
+            
+        }
+        if(typen == "map" || typen == "m"){
+            if(!args[1]) return message.reply("please provide a map name! \n \`\`\`>tempus m [map name]\`\`\`")
+            else var usern = args[1];
+            function getOrdinal(n) {
+                var s=["th","st","nd","rd"], v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]);
+             }
+            fetch(`https://tempus.xyz/api/search/playersAndMaps/${usern}`)
+                .then(res => res.json())
+                .then(json => {
+                    if(!json.maps[0]){
+                    const embed = new Discord.RichEmbed()
+                                .setAuthor("ERROR!")
+                                .setColor(0xe03a00)
+                                .setDescription(`\"${usern}\" is not a valid map name! \n \n [you may have made a typo]`)
+                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                .setThumbnail(client.user.avatarURL);
+                                return message.channel.send({embed});
+                    }
+                    fetch(`https://tempus.xyz/api/maps/id/${json.maps[0].id}/fullOverview`)
+                        .then(res2 => res2.json())
+                        .then(json2 => {
+                            console.log(json2);
+                            var cap1 = json2.soldier_runs.length;
+                            if(cap1 > 3) cap1 = 3;
+                            var cap2 = json2.demoman_runs.length;
+                            if(cap2 > 3) cap2 = 3;
+                            var sruns = "\`no soldier runs have been recorded on this map!\`";
+                            var srunsb = ""
+                            var druns = "\`no demoman runs have been recorded on this map!\`";
+                            var drunsb = ""
+                            if(!json2.zone_counts.course || json2.zone_counts.course == 1) var course = "1 course, "
+                            else var course = `${json2.zone_counts.course} courses, `
+                            if(!json2.zone_counts.bonus) var bonus = "0 bonuses, "
+                            else if(json2.zone_counts.bonus == 1) var bonus = `${json2.zone_counts.bonus} bonus, ` 
+                            else var bonus = `${json2.zone_counts.bonus} bonuses, `
+                            if(!json2.zone_counts.checkpoint || json2.zone_counts.checkpoint == 1) var check = "1 checkpoint"
+                            else var check = `${json2.zone_counts.checkpoint} checkpoints`
+                            for(var i = 0; i < cap1; i++){
+                                srunsb += ("\`" + Math.floor(json2.soldier_runs[i].duration/60) + ":" + ("0" + Math.floor(json2.soldier_runs[i].duration%60)).substr(-2) + ((json2.soldier_runs[i].duration%60)%1).toFixed(2).toString().replace("0.",".") + "\` - " + json2.soldier_runs[i].name + "\n")
+                                sruns = srunsb;
+                            }
+                            for(var j = 0; j < cap2; j++){
+                                drunsb += ("\`" + Math.floor(json2.demoman_runs[j].duration/60) + ":" + ("0" + Math.floor(json2.demoman_runs[j].duration%60)).substr(-2) + ((json2.demoman_runs[j].duration%60)%1).toFixed(2).toString().replace("0.",".") + "\` - " + json2.demoman_runs[j].name + "\n")
+                                druns = drunsb;
+                            }
+                            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                            var mapadd = new Date(json2.map_info.date_added*1000);
+                            var embed1 = {embed: {
+                                color: 0xe03a00,
+                                author: {
+                                    name: `TEMPUS MAP STATISTICS: ${json2.map_info.name.toUpperCase()}`,
+                                    icon_url: client.user.avatarURL
+                                },
+                                fields: [{
+                                    name: "tier",
+                                    value: `T${json2.tier_info.soldier} soldier - T${json2.tier_info.demoman} demoman`
+                                },{
+                                    name: "map layout",
+                                    value: `${course}${bonus}${check}`
+                                },{
+                                    name: "soldier - top runs",
+                                    value: sruns
+                                },{
+                                    name: "demoman - top runs",
+                                    value: druns
+                                }],
+                                footer: {
+                                    icon_url: client.users.get("145772530454626304").avatarURL,
+                                    text: `bumble#8029 | tempus.xyz | map added ${getOrdinal(mapadd.getDate())} ${months[mapadd.getMonth()].toString().toLowerCase()} ${mapadd.getFullYear().toString().toLowerCase()}`
+                                }
+                              }}
+                              message.channel.send(embed1);
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            const embed = new Discord.RichEmbed()
+                                .setAuthor("ERROR!")
+                                .setColor(0xe03a00)
+                                .setDescription(`\"${usern}\" is not a valid map name! \n \n [you may have made a typo]`)
+                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                .setThumbnail(client.user.avatarURL);
+                                return message.channel.send({embed});
+                        })
+                })
+            }
+        }
         if(command === "bp"){
                 if(!args[0]) var usern = message.member.displayName.toString();
                 else var usern = args[0]
