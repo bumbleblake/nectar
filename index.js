@@ -1329,6 +1329,8 @@ if(command === "tempus"){
                                   }}
                                   message.channel.send(embed1);
                             } 
+                    }).catch(err => {
+                        return message.reply(`unexpected error! \n ${err}`)
                     })
             }).catch(err => {
                 const embed = new Discord.RichEmbed()
