@@ -653,7 +653,7 @@ client.on("message", async message => {
                                                 }
                                                 demoman.assists += plclass.assists
                                             }
-                                            else if(plclasstype == "heavy"){
+                                            else if(plclasstype == "heavyweapons"){
                                                 heavy.games += 1;
                                                 heavy.kills += plclass.kills
                                                 heavy.dmg += plclass.dmg
