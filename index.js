@@ -546,13 +546,19 @@ client.on("message", async message => {
                 var taken = 0;
                 var airshots = 0;
                 var scout = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
+                var scweapons = [{scattergun: {shots: 0, hits: 0, alias: "scattergun"}, pistol_scout: {shots: 0, hits: 0, alias: "pistol"}}];
                 var soldier = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
-                var pyro = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
+                var soweapons = [{tf_projectile_rocket: {shots: 0, hits: 0, alias: "rocket launcher"}, quake_rl: {shots: 0, hits: 0, alias: 'original'}, rocketlauncher_directhit: {shots: 0, hits: 0, alias: "direct hit"}, shotgun_soldier: {shots: 0, hits: 0, alias: "shotgun"}, blackbox: {shots: 0, hits: 0, alias: "black box"}}];
+                var pyro = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};               
                 var demoman = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
+                var deweapons = [{tf_projectile_pipe: {shots: 0, hits: 0, alias: "grenade launcher"}, iron_bomber: {shots: 0, hits: 0, alias: "iron bomber"}, tf_projectile_pipe_remote: {shots: 0, hits: 0, alias: "stickybomb launcher"}, quickiebomb_launcher: {shots: 0, hits: 0, alias: "quickiebomb launcher"}}];
                 var heavy = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
                 var engineer = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
+                var enweapons = [{shotgun_primary: {shots: 0, hits: 0, alias: "shotgun"}, pistol: {shots: 0, hits: 0, alias: "pistol"}}];
                 var medic = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0, "ubers": 0, "drops": 0, "healing": 0};
+                var meweapons = [{crusaders_crossbow: {shots: 0, hits: 0, alias: "crusader's crossbow"}, syringegun_medic: {shots: 0, hits: 0, alias: "syringe gun"}}]
                 var sniper = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
+                var snweapons = [{sniperrifle: {shots: 0, hits: 0, alias: "sniper rifle"}, smg: {shots: 0, hits: 0, alias: "smg"}}];
                 var spy = {"games": 0, "kills": 0, "dmg": 0, "deaths": 0, "time": 0, "shots": 0, "hits": 0, "assists": 0};
                 fetch(`http://logs.tf/api/v1/log?player=${id64}`)
                 .then(res => res.json())
@@ -606,6 +612,17 @@ client.on("message", async message => {
                                             var plclasstype = pl.class_stats[Object.keys(pl.class_stats)[f]].type;
                                             var plclass = pl.class_stats[Object.keys(pl.class_stats)[f]];
                                             if(plclasstype == "scout"){
+                                            var accstring = "";     
+                                                for (var fj=0;fj<Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; fj++){
+                                                    if(parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].shots) > 0){
+                                                    if(!scweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()]){
+                                                        scweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()] = {shots: 0, hits: 0, alias: (Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj])}
+                                                    }
+                                                        scweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()].shots += pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].shots;
+                                                        scweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()].hits += pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].hits;      
+                                                } if(scweapons[0].maxgun){ scweapons[0].pistol_scout.shots += scweapons[0].maxgun.shots; scweapons[0].pistol_scout.hits += scweapons[0].maxgun.hits; delete scweapons[0].maxgun; }
+                                                  if(scweapons[0].the_capper){ scweapons[0].pistol_scout.shots += scweapons[0].the_capper.shots; scweapons[0].pistol_scout.hits += scweapons[0].the_capper.hits; delete scweapons[0].the_capper; }                                                                             
+                                                }
                                                 scout.games += 1;
                                                 scout.kills += plclass.kills
                                                 scout.dmg += plclass.dmg
@@ -618,6 +635,16 @@ client.on("message", async message => {
                                                 scout.assists += plclass.assists
                                             }
                                             else if(plclasstype == "soldier"){
+                                            var accstring = ""; 
+                                                for (var fj=0;fj<Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; fj++){
+                                                    if(parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].shots) > 0){
+                                                    if(!soweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()]){
+                                                        soweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()] = {shots: 0, hits: 0, alias: (Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj])}
+                                                    }
+                                                        soweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()].shots += pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].shots;
+                                                        soweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()].hits += pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].hits;      
+                                                } 
+                                                }  
                                                 soldier.games += 1;
                                                 soldier.kills += plclass.kills
                                                 soldier.dmg += plclass.dmg
@@ -642,6 +669,16 @@ client.on("message", async message => {
                                                 pyro.assists += plclass.assists
                                             }
                                             else if(plclasstype == "demoman"){
+                                            var accstring = ""; 
+                                                for (var fj=0;fj<Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; fj++){
+                                                    if(parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].shots) > 0){
+                                                    if(!deweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()]){
+                                                        deweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()] = {shots: 0, hits: 0, alias: (Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj])}
+                                                    }
+                                                        deweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()].shots += pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].shots;
+                                                        deweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()].hits += pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].hits;      
+                                                } 
+                                                }   
                                                 demoman.games += 1;
                                                 demoman.kills += plclass.kills
                                                 demoman.dmg += plclass.dmg
@@ -666,6 +703,17 @@ client.on("message", async message => {
                                                 heavy.assists += plclass.assists
                                             }
                                             else if(plclasstype == "engineer"){
+                                            var accstring = ""; 
+                                                for (var fj=0;fj<Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; fj++){
+                                                    if(parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].shots) > 0){
+                                                    if(!enweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()]){ 
+                                                        enweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()] = {shots: 0, hits: 0, alias: (Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj])}
+                                                    }
+                                                        enweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()].shots += pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].shots;
+                                                        enweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()].hits += pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].hits;      
+                                                } if(enweapons[0].maxgun){ enweapons[0].pistol.shots += enweapons[0].maxgun.shots; enweapons[0].pistol.hits += enweapons[0].maxgun.hits; delete enweapons[0].maxgun; }
+                                                  if(enweapons[0].the_capper){ enweapons[0].pistol.shots += enweapons[0].the_capper.shots; enweapons[0].pistol.hits += enweapons[0].the_capper.hits; delete enweapons[0].the_capper; }                                                                             
+                                                }   
                                                 engineer.games += 1;
                                                 engineer.kills += plclass.kills
                                                 engineer.dmg += plclass.dmg
@@ -678,6 +726,16 @@ client.on("message", async message => {
                                                 engineer.assists += plclass.assists
                                             }
                                             else if(plclasstype == "medic"){
+                                            var accstring = ""; 
+                                                for (var fj=0;fj<Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; fj++){
+                                                    if(parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].shots) > 0){
+                                                    if(!meweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()]){ 
+                                                        meweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()] = {shots: 0, hits: 0, alias: (Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj])}
+                                                    }
+                                                        meweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()].shots += pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].shots;
+                                                        meweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()].hits += pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].hits;      
+                                                } 
+                                                }   
                                                 medic.ubers += pl.ubers
                                                 medic.drops += pl.drops
                                                 medic.games += 1;
@@ -693,6 +751,16 @@ client.on("message", async message => {
                                                 medic.assists += plclass.assists
                                             }
                                             else if(plclasstype == "sniper"){
+                                            var accstring = ""; 
+                                                for (var fj=0;fj<Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon).length; fj++){
+                                                    if(parseInt(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].shots) > 0){
+                                                    if(!snweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()]){ 
+                                                        snweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()] = {shots: 0, hits: 0, alias: (Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj])}
+                                                    }
+                                                        snweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()].shots += pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].shots;
+                                                        snweapons[0][(Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]).toString()].hits += pl.class_stats[Object.keys(pl.class_stats)[f]].weapon[Object.keys(pl.class_stats[Object.keys(pl.class_stats)[f]].weapon)[fj]].hits;      
+                                                } 
+                                                }  
                                                 sniper.games += 1;
                                                 sniper.kills += plclass.kills
                                                 sniper.dmg += plclass.dmg
@@ -799,6 +867,8 @@ client.on("message", async message => {
                                                 .setThumbnail(client.user.avatarURL);
                                                 return message.channel.send({embed});
                                               }
+                                            for(var fk=0;fk<Object.keys(scweapons[0]).length;fk++){ if(scweapons[0][Object.keys(scweapons[0])[fk]].shots == 0) delete scweapons[0][Object.keys(scweapons[0])[fk]]; }
+                                                for(var ww=0;ww<Object.keys(scweapons[0]).length;ww++){ accstring+=`**${scweapons[0][Object.keys(scweapons[0])[ww]].alias}**: ${((scweapons[0][Object.keys(scweapons[0])[ww]].hits/scweapons[0][Object.keys(scweapons[0])[ww]].shots)*100).toFixed(1)}% (${scweapons[0][Object.keys(scweapons[0])[ww]].shots.toLocaleString()} shots, ${scweapons[0][Object.keys(scweapons[0])[ww]].hits.toLocaleString()} hits) \n`}
                                             var embed1 = {embed: {
                                                 color: 0xe03a00,
                                                 author: {
@@ -813,11 +883,11 @@ client.on("message", async message => {
                                                     value: scout.dmg.toLocaleString() + " (" + parseFloat((scout.dmg/scout.time)*60).toFixed(2) + "dpm)",
                                                 },{
                                                     name: "accuracy",
-                                                    value: parseInt((scout.hits/scout.shots)*100) + "% (" + scout.shots.toLocaleString() + " shots, " + scout.hits.toLocaleString() + " hits)",
+                                                    value: `${accstring} **overall**: ${((scout.hits/scout.shots)*100).toFixed(1)}% (${scout.shots.toLocaleString()} shots, ${scout.hits.toLocaleString()} hits)`,
                                                 }],
                                                 footer: {
                                                     icon_url: client.users.get("145772530454626304").avatarURL,
-                                                    text: `bumble#3055 | logs.tf | ${scout.games} games`
+                                                    text: `bumble#3055 | logs.tf | ${scout.games} games, ${(parseInt(scout.time)/3600).toFixed(1)} hours`
                                                 }
                                               }}
                                               message.channel.send(message.author.toString())
@@ -834,6 +904,8 @@ client.on("message", async message => {
                                                   .setThumbnail(client.user.avatarURL);
                                                   return message.channel.send({embed});
                                                 }
+                                              for(var fk=0;fk<Object.keys(soweapons[0]).length;fk++){ if(soweapons[0][Object.keys(soweapons[0])[fk]].shots == 0) delete soweapons[0][Object.keys(soweapons[0])[fk]]; } 
+                                                for(var ww=0;ww<Object.keys(soweapons[0]).length;ww++){ accstring+=`**${soweapons[0][Object.keys(soweapons[0])[ww]].alias}**: ${((soweapons[0][Object.keys(soweapons[0])[ww]].hits/soweapons[0][Object.keys(soweapons[0])[ww]].shots)*100).toFixed(1)}% (${soweapons[0][Object.keys(soweapons[0])[ww]].shots.toLocaleString()} shots, ${soweapons[0][Object.keys(soweapons[0])[ww]].hits.toLocaleString()} hits) \n`}                                              
                                               var embed1 = {embed: {
                                                   color: 0xe03a00,
                                                   author: {
@@ -848,11 +920,11 @@ client.on("message", async message => {
                                                       value: soldier.dmg.toLocaleString() + " (" + parseFloat((soldier.dmg/soldier.time)*60).toFixed(2) + "dpm)",
                                                   },{
                                                       name: "accuracy",
-                                                      value: parseInt((soldier.hits/soldier.shots)*100) + "% (" + soldier.shots.toLocaleString() + " shots, " + soldier.hits.toLocaleString() + " hits)",
+                                                      value: `${accstring} **overall**: ${((soldier.hits/soldier.shots)*100).toFixed(1)}% (${soldier.shots.toLocaleString()} shots, ${soldier.hits.toLocaleString()} hits)`,
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#3055 | logs.tf | ${soldier.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${soldier.games} games, ${(parseInt(soldier.time)/3600).toFixed(1)} hours`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
@@ -886,7 +958,7 @@ client.on("message", async message => {
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#3055 | logs.tf | ${pyro.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${pyro.games} games, ${(parseInt(pyro.time)/3600).toFixed(1)} hours`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
@@ -903,6 +975,8 @@ client.on("message", async message => {
                                                   .setThumbnail(client.user.avatarURL);
                                                   return message.channel.send({embed});
                                                 }
+                                              for(var fk=0;fk<Object.keys(deweapons[0]).length;fk++){ if(deweapons[0][Object.keys(deweapons[0])[fk]].shots == 0) delete deweapons[0][Object.keys(deweapons[0])[fk]]; }  
+                                                for(var ww=0;ww<Object.keys(deweapons[0]).length;ww++){ accstring+=`**${deweapons[0][Object.keys(deweapons[0])[ww]].alias}**: ${((deweapons[0][Object.keys(deweapons[0])[ww]].hits/deweapons[0][Object.keys(deweapons[0])[ww]].shots)*100).toFixed(1)}% (${deweapons[0][Object.keys(deweapons[0])[ww]].shots.toLocaleString()} shots, ${deweapons[0][Object.keys(deweapons[0])[ww]].hits.toLocaleString()} hits) \n`}
                                               var embed1 = {embed: {
                                                   color: 0xe03a00,
                                                   author: {
@@ -917,11 +991,11 @@ client.on("message", async message => {
                                                       value: demoman.dmg.toLocaleString() + " (" + parseFloat((demoman.dmg/demoman.time)*60).toFixed(2) + "dpm)",
                                                   },{
                                                       name: "accuracy",
-                                                      value: parseInt((demoman.hits/demoman.shots)*100) + "% (" + demoman.shots.toLocaleString() + " shots, " + demoman.hits.toLocaleString() + " hits)",
+                                                      value: `${accstring} **overall**: ${((demoman.hits/demoman.shots)*100).toFixed(1)}% (${demoman.shots.toLocaleString()} shots, ${demoman.hits.toLocaleString()} hits)`,
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#3055 | logs.tf | ${demoman.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${demoman.games} games, ${(parseInt(demoman.time)/3600).toFixed(1)} hours`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
@@ -956,7 +1030,7 @@ client.on("message", async message => {
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#3055 | logs.tf | ${heavy.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${heavy.games} games, ${(parseInt(heavy.time)/3600).toFixed(1)} hours`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
@@ -973,6 +1047,8 @@ client.on("message", async message => {
                                                   .setThumbnail(client.user.avatarURL);
                                                   return message.channel.send({embed});
                                                 }
+                                              for(var fk=0;fk<Object.keys(enweapons[0]).length;fk++){ if(enweapons[0][Object.keys(enweapons[0])[fk]].shots == 0) delete enweapons[0][Object.keys(enweapons[0])[fk]]; }   
+                                                for(var ww=0;ww<Object.keys(enweapons[0]).length;ww++){ accstring+=`**${enweapons[0][Object.keys(enweapons[0])[ww]].alias}**: ${((enweapons[0][Object.keys(enweapons[0])[ww]].hits/enweapons[0][Object.keys(enweapons[0])[ww]].shots)*100).toFixed(1)}% (${enweapons[0][Object.keys(enweapons[0])[ww]].shots.toLocaleString()} shots, ${enweapons[0][Object.keys(enweapons[0])[ww]].hits.toLocaleString()} hits) \n`}   
                                               var embed1 = {embed: {
                                                   color: 0xe03a00,
                                                   author: {
@@ -987,11 +1063,11 @@ client.on("message", async message => {
                                                       value: engineer.dmg.toLocaleString() + " (" + parseFloat((engineer.dmg/engineer.time)*60).toFixed(2) + "dpm)",
                                                   },{
                                                       name: "accuracy",
-                                                      value: parseInt((engineer.hits/engineer.shots)*100) + "% (" + engineer.shots.toLocaleString() + " shots, " + engineer.hits.toLocaleString() + " hits)",
+                                                      value: `${accstring} **overall**: ${((engineer.hits/engineer.shots)*100).toFixed(1)}% (${engineer.shots.toLocaleString()} shots, ${engineer.hits.toLocaleString()} hits)`,
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#3055 | logs.tf | ${engineer.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${engineer.games} games, ${(parseInt(engineer.time)/3600).toFixed(1)} hours`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
@@ -1008,6 +1084,8 @@ client.on("message", async message => {
                                                   .setThumbnail(client.user.avatarURL);
                                                   return message.channel.send({embed});
                                                 }
+                                              for(var fk=0;fk<Object.keys(meweapons[0]).length;fk++){ if(meweapons[0][Object.keys(meweapons[0])[fk]].shots == 0) delete meweapons[0][Object.keys(meweapons[0])[fk]]; }  
+                                                for(var ww=0;ww<Object.keys(meweapons[0]).length;ww++){ accstring+=`**${meweapons[0][Object.keys(meweapons[0])[ww]].alias}**: ${((meweapons[0][Object.keys(meweapons[0])[ww]].hits/meweapons[0][Object.keys(meweapons[0])[ww]].shots)*100).toFixed(1)}% (${meweapons[0][Object.keys(meweapons[0])[ww]].shots.toLocaleString()} shots, ${meweapons[0][Object.keys(meweapons[0])[ww]].hits.toLocaleString()} hits) \n`}   
                                               var embed1 = {embed: {
                                                   color: 0xe03a00,
                                                   author: {
@@ -1022,11 +1100,11 @@ client.on("message", async message => {
                                                       value: medic.healing.toLocaleString() + " (" + parseFloat((medic.healing/medic.time)*60).toFixed(2) + "hpm)",
                                                   },{
                                                       name: "accuracy",
-                                                      value: parseInt((medic.hits/medic.shots)*100) + "% (" + medic.shots.toLocaleString() + " shots, " + medic.hits.toLocaleString() + " hits)",
+                                                      value: `${accstring} **overall**: ${((medic.hits/medic.shots)*100).toFixed(1)}% (${medic.shots.toLocaleString()} shots, ${medic.hits.toLocaleString()} hits)`,
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#3055 | logs.tf | ${medic.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${medic.games} games, ${(parseInt(medic.time)/3600).toFixed(1)} hours`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
@@ -1043,6 +1121,8 @@ client.on("message", async message => {
                                                   .setThumbnail(client.user.avatarURL);
                                                   return message.channel.send({embed});
                                                 }
+                                                for(var fk=0;fk<Object.keys(snweapons[0]).length;fk++){ if(snweapons[0][Object.keys(snweapons[0])[fk]].shots == 0) delete snweapons[0][Object.keys(snweapons[0])[fk]]; } 
+                                                for(var ww=0;ww<Object.keys(snweapons[0]).length;ww++){ accstring+=`**${snweapons[0][Object.keys(snweapons[0])[ww]].alias}**: ${((snweapons[0][Object.keys(snweapons[0])[ww]].hits/snweapons[0][Object.keys(snweapons[0])[ww]].shots)*100).toFixed(1)}% (${snweapons[0][Object.keys(snweapons[0])[ww]].shots.toLocaleString()} shots, ${snweapons[0][Object.keys(snweapons[0])[ww]].hits.toLocaleString()} hits) \n`}   
                                               var embed1 = {embed: {
                                                   color: 0xe03a00,
                                                   author: {
@@ -1057,11 +1137,11 @@ client.on("message", async message => {
                                                       value: sniper.dmg.toLocaleString() + " (" + parseFloat((sniper.dmg/sniper.time)*60).toFixed(2) + "dpm)",
                                                   },{
                                                       name: "accuracy",
-                                                      value: parseInt((sniper.hits/sniper.shots)*100) + "% (" + sniper.shots.toLocaleString() + " shots, " + sniper.hits.toLocaleString() + " hits)",
+                                                      value: `${accstring} **overall**: ${((sniper.hits/sniper.shots)*100).toFixed(1)}% (${sniper.shots.toLocaleString()} shots, ${sniper.hits.toLocaleString()} hits)`,
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#3055 | logs.tf | ${sniper.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${sniper.games} games, ${(parseInt(sniper.time)/3600).toFixed(1)} hours`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
@@ -1092,11 +1172,11 @@ client.on("message", async message => {
                                                       value: spy.dmg.toLocaleString() + " (" + parseFloat((spy.dmg/spy.time)*60).toFixed(2) + "dpm)",
                                                   },{
                                                       name: "accuracy",
-                                                      value: parseInt((spy.hits/spy.shots)*100) + "% (" + spy.shots.toLocaleString() + " shots, " + spy.hits.toLocaleString() + " hits)",
+                                                      value: `**overall**: ${((spy.hits/spy.shots)*100).toFixed(1)}% (${spy.shots.toLocaleString()} shots, ${spy.hits.toLocaleString()} hits)`,
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#3055 | logs.tf | ${spy.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${spy.games} games, ${(parseInt(spy.time)/3600).toFixed(1)} hours`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
