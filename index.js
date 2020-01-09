@@ -101,7 +101,7 @@ client.on("message", async message => {
                     .setAuthor("ERROR!")
                     .setColor(0xe03a00)
                     .setDescription(`${summary.nickname} (${usern})'s TF2 stats are inaccessible! \n \n [to view your stats, set your game details to public]`)
-                    .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                    .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                     .setThumbnail(summary.avatar.large);
                     return message.channel.send({embed});}
             for(var i = 0; i < games.length; i++){
@@ -228,7 +228,7 @@ client.on("message", async message => {
                         }],
                         footer: {
                                  icon_url: client.users.get("145772530454626304").avatarURL,
-                                 text: `bumble#8029 | api.steampowered.com`
+                                 text: `bumble#3055 | api.steampowered.com`
                         }
                       }});
                     if(type === "damage" || type === "dmg" || type === "kills")
@@ -250,7 +250,7 @@ client.on("message", async message => {
                         }],
                         footer: {
                                  icon_url: client.users.get("145772530454626304").avatarURL,
-                                 text: `bumble#8029 | api.steampowered.com`
+                                 text: `bumble#3055 | api.steampowered.com`
                         }
                       }});
                       if(type === "support" || type === "sp" || type === "points" || type === "obj")
@@ -272,7 +272,7 @@ client.on("message", async message => {
                         }],
                         footer: {
                                  icon_url: client.users.get("145772530454626304").avatarURL,
-                                 text: `bumble#8029 | api.steampowered.com`
+                                 text: `bumble#3055 | api.steampowered.com`
                         }
                       }});
                       if(type === "scout")
@@ -294,7 +294,7 @@ client.on("message", async message => {
                         }],
                         footer: {
                                  icon_url: client.users.get("145772530454626304").avatarURL,
-                                 text: `bumble#8029 | api.steampowered.com`
+                                 text: `bumble#3055 | api.steampowered.com`
                         }
                       }});
                       if(type === "soldier" || type === "solly")
@@ -316,7 +316,7 @@ client.on("message", async message => {
                         }],
                         footer: {
                                  icon_url: client.users.get("145772530454626304").avatarURL,
-                                 text: `bumble#8029 | api.steampowered.com`
+                                 text: `bumble#3055 | api.steampowered.com`
                         }
                       }});
                       if(type === "pyro")
@@ -338,7 +338,7 @@ client.on("message", async message => {
                         }],
                         footer: {
                                  icon_url: client.users.get("145772530454626304").avatarURL,
-                                 text: `bumble#8029 | api.steampowered.com`
+                                 text: `bumble#3055 | api.steampowered.com`
                         }
                       }});
                       if(type === "demo" || type === "demoman")
@@ -360,7 +360,7 @@ client.on("message", async message => {
                         }],
                         footer: {
                                  icon_url: client.users.get("145772530454626304").avatarURL,
-                                 text: `bumble#8029 | api.steampowered.com`
+                                 text: `bumble#3055 | api.steampowered.com`
                         }
                       }});
                       if(type === "heavy")
@@ -382,7 +382,7 @@ client.on("message", async message => {
                         }],
                         footer: {
                                  icon_url: client.users.get("145772530454626304").avatarURL,
-                                 text: `bumble#8029 | api.steampowered.com`
+                                 text: `bumble#3055 | api.steampowered.com`
                         }
                       }});
                       if(type === "engineer" || type === "engi" || type === "engie")
@@ -422,7 +422,7 @@ client.on("message", async message => {
                         }],
                         footer: {
                                  icon_url: client.users.get("145772530454626304").avatarURL,
-                                 text: `bumble#8029 | api.steampowered.com`
+                                 text: `bumble#3055 | api.steampowered.com`
                         }
                       }});
                       if(type === "sniper")
@@ -444,7 +444,7 @@ client.on("message", async message => {
                         }],
                         footer: {
                                  icon_url: client.users.get("145772530454626304").avatarURL,
-                                 text: `bumble#8029 | api.steampowered.com`
+                                 text: `bumble#3055 | api.steampowered.com`
                         }
                       }});
                       if(type === "spy")
@@ -466,7 +466,7 @@ client.on("message", async message => {
                         }],
                         footer: {
                                  icon_url: client.users.get("145772530454626304").avatarURL,
-                                 text: `bumble#8029 | api.steampowered.com`
+                                 text: `bumble#3055 | api.steampowered.com`
                         }
                       }});
                       if(typearr.indexOf(type) < 0){
@@ -474,7 +474,7 @@ client.on("message", async message => {
                         .setAuthor("ERROR!")
                         .setColor(0xe03a00)
                         .setDescription(`${args[0]} is not a valid search! \n \n [refer to \`>help\` for the list of things you can search]`)
-                        .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                        .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                         .setThumbnail(client.user.avatarURL);
                         return message.channel.send({embed});
                       }
@@ -485,7 +485,7 @@ client.on("message", async message => {
                         .setAuthor("ERROR!")
                         .setColor(0xe03a00)
                         .setDescription(`${summary.nickname} (${usern})'s TF2 stats are inaccessible! \n \n [${diag}]`)
-                        .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                        .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                         .setThumbnail(summary.avatar.large);
                         return message.channel.send({embed});
                     })
@@ -498,7 +498,7 @@ client.on("message", async message => {
                         .setAuthor("ERROR!")
                         .setColor(0xe03a00)
                         .setDescription(`${usern} is not a valid vanity ID! \n \n ${diag}`)
-                        .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                        .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                         .setThumbnail(client.user.avatarURL);
                         return message.channel.send({embed});
             })
@@ -513,7 +513,7 @@ client.on("message", async message => {
             if(!isNaN(usern)){
                 var sid = new SteamID(usern)
                 if(sid.isValid()){
-                    var resolve = "bumblephat"
+                    var resolve = "airpipe"
                     var j = true;
                 }
             }
@@ -523,7 +523,7 @@ client.on("message", async message => {
                                             .setAuthor("ERROR!")
                                             .setColor(0xe03a00)
                                             .setDescription(`${type} is not a valid search! \n \n [refer to \`>help\` for the list of things you can search]`)
-                                            .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                            .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                             .setThumbnail(client.user.avatarURL);
                                             return message.channel.send({embed});
                                           }
@@ -562,7 +562,7 @@ client.on("message", async message => {
                                 .setAuthor("ERROR!")
                                 .setColor(0xe03a00)
                                 .setDescription(`${summary.nickname} does not have any logs! \n \n [maybe this gamer just isn't epic enough]`)
-                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                 .setThumbnail(client.user.avatarURL);
                                 return message.channel.send({embed});
                         }
@@ -574,7 +574,7 @@ client.on("message", async message => {
                                     .setAuthor("ERROR!")
                                     .setColor(0xe03a00)
                                     .setDescription(`${args[2]} is not a valid amount of games! \n \n [please enter a valid number greater than 0]`)
-                                    .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                    .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                     .setThumbnail(client.user.avatarURL);
                                     return message.channel.send({embed});
                             }
@@ -754,7 +754,7 @@ client.on("message", async message => {
                                             }],
                                             footer: {
                                                 icon_url: client.users.get("145772530454626304").avatarURL,
-                                                text: `bumble#8029 | logs.tf | ${cap} games`
+                                                text: `bumble#3055 | logs.tf | ${cap} games`
                                             }
                                           }}
                                           message.channel.send(message.author.toString())
@@ -780,7 +780,7 @@ client.on("message", async message => {
                                                 }],
                                                 footer: {
                                                     icon_url: client.users.get("145772530454626304").avatarURL,
-                                                    text: `bumble#8029 | logs.tf | ${cap} games`
+                                                    text: `bumble#3055 | logs.tf | ${cap} games`
                                                 }
                                               }
                                               }
@@ -795,7 +795,7 @@ client.on("message", async message => {
                                                 .setAuthor("ERROR!")
                                                 .setColor(0xe03a00)
                                                 .setDescription(`${summary.nickname} does not have any logs as scout! \n \n [maybe this gamer just isn't epic enough]`)
-                                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                                 .setThumbnail(client.user.avatarURL);
                                                 return message.channel.send({embed});
                                               }
@@ -817,7 +817,7 @@ client.on("message", async message => {
                                                 }],
                                                 footer: {
                                                     icon_url: client.users.get("145772530454626304").avatarURL,
-                                                    text: `bumble#8029 | logs.tf | ${scout.games} games`
+                                                    text: `bumble#3055 | logs.tf | ${scout.games} games`
                                                 }
                                               }}
                                               message.channel.send(message.author.toString())
@@ -830,7 +830,7 @@ client.on("message", async message => {
                                                   .setAuthor("ERROR!")
                                                   .setColor(0xe03a00)
                                                   .setDescription(`${summary.nickname} does not have any logs as soldier! \n \n [maybe this gamer just isn't epic enough]`)
-                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                                   .setThumbnail(client.user.avatarURL);
                                                   return message.channel.send({embed});
                                                 }
@@ -852,7 +852,7 @@ client.on("message", async message => {
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#8029 | logs.tf | ${soldier.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${soldier.games} games`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
@@ -864,7 +864,7 @@ client.on("message", async message => {
                                                   .setAuthor("ERROR!")
                                                   .setColor(0xe03a00)
                                                   .setDescription(`${summary.nickname} does not have any logs as pyro! \n \n [maybe this gamer just isn't epic enough]`)
-                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                                   .setThumbnail(client.user.avatarURL);
                                                   return message.channel.send({embed});
                                                 }
@@ -886,7 +886,7 @@ client.on("message", async message => {
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#8029 | logs.tf | ${pyro.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${pyro.games} games`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
@@ -899,7 +899,7 @@ client.on("message", async message => {
                                                   .setAuthor("ERROR!")
                                                   .setColor(0xe03a00)
                                                   .setDescription(`${summary.nickname} does not have any logs as demoman! \n \n [maybe this gamer just isn't epic enough]`)
-                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                                   .setThumbnail(client.user.avatarURL);
                                                   return message.channel.send({embed});
                                                 }
@@ -921,7 +921,7 @@ client.on("message", async message => {
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#8029 | logs.tf | ${demoman.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${demoman.games} games`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
@@ -934,7 +934,7 @@ client.on("message", async message => {
                                                   .setAuthor("ERROR!")
                                                   .setColor(0xe03a00)
                                                   .setDescription(`${summary.nickname} does not have any logs as heavy! \n \n [maybe this gamer just isn't epic enough]`)
-                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                                   .setThumbnail(client.user.avatarURL);
                                                   return message.channel.send({embed});
                                                 }
@@ -956,7 +956,7 @@ client.on("message", async message => {
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#8029 | logs.tf | ${heavy.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${heavy.games} games`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
@@ -969,7 +969,7 @@ client.on("message", async message => {
                                                   .setAuthor("ERROR!")
                                                   .setColor(0xe03a00)
                                                   .setDescription(`${summary.nickname} does not have any logs as engineer! \n \n [maybe this gamer just isn't epic enough]`)
-                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                                   .setThumbnail(client.user.avatarURL);
                                                   return message.channel.send({embed});
                                                 }
@@ -991,7 +991,7 @@ client.on("message", async message => {
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#8029 | logs.tf | ${engineer.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${engineer.games} games`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
@@ -1004,7 +1004,7 @@ client.on("message", async message => {
                                                   .setAuthor("ERROR!")
                                                   .setColor(0xe03a00)
                                                   .setDescription(`${summary.nickname} does not have any logs as medic! \n \n [maybe this gamer just isn't epic enough]`)
-                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                                   .setThumbnail(client.user.avatarURL);
                                                   return message.channel.send({embed});
                                                 }
@@ -1026,7 +1026,7 @@ client.on("message", async message => {
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#8029 | logs.tf | ${medic.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${medic.games} games`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
@@ -1039,7 +1039,7 @@ client.on("message", async message => {
                                                   .setAuthor("ERROR!")
                                                   .setColor(0xe03a00)
                                                   .setDescription(`${summary.nickname} does not have any logs as sniper! \n \n [maybe this gamer just isn't epic enough]`)
-                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                                   .setThumbnail(client.user.avatarURL);
                                                   return message.channel.send({embed});
                                                 }
@@ -1061,7 +1061,7 @@ client.on("message", async message => {
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#8029 | logs.tf | ${sniper.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${sniper.games} games`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
@@ -1074,7 +1074,7 @@ client.on("message", async message => {
                                                   .setAuthor("ERROR!")
                                                   .setColor(0xe03a00)
                                                   .setDescription(`${summary.nickname} does not have any logs as spy! \n \n [maybe this gamer just isn't epic enough]`)
-                                                  .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                                  .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                                   .setThumbnail(client.user.avatarURL);
                                                   return message.channel.send({embed});
                                                 }
@@ -1096,7 +1096,7 @@ client.on("message", async message => {
                                                   }],
                                                   footer: {
                                                       icon_url: client.users.get("145772530454626304").avatarURL,
-                                                      text: `bumble#8029 | logs.tf | ${spy.games} games`
+                                                      text: `bumble#3055 | logs.tf | ${spy.games} games`
                                                   }
                                                 }}
                                                 message.channel.send(message.author.toString())
@@ -1118,7 +1118,7 @@ client.on("message", async message => {
                                 .setAuthor("ERROR!")
                                 .setColor(0xe03a00)
                                 .setDescription(`${usern} is not a valid ID! \n \n ${diag}`)
-                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                 .setThumbnail(client.user.avatarURL);
                                 return message.channel.send({embed});
                     })
@@ -1129,7 +1129,7 @@ client.on("message", async message => {
                                 .setAuthor("ERROR!")
                                 .setColor(0xe03a00)
                                 .setDescription(`${usern} is not a valid ID! \n \n ${diag}`)
-                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                 .setThumbnail(client.user.avatarURL);
                                 return message.channel.send({embed});
                     })
@@ -1212,7 +1212,7 @@ if(command === "tempus"){
                         .setAuthor("ERROR!")
                         .setColor(0xe03a00)
                         .setDescription(`${typen} is not a valid search term! \n \n [refer to \`>help\` for the list of valid search terms]`)
-                        .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                        .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                         .setThumbnail(client.user.avatarURL);
                         return message.channel.send({embed});
                 }
@@ -1270,7 +1270,7 @@ if(command === "tempus"){
                                     }],
                                     footer: {
                                         icon_url: client.users.get("145772530454626304").avatarURL,
-                                        text: `bumble#8029 | tempus.xyz`
+                                        text: `bumble#3055 | tempus.xyz`
                                     }
                                   }}
                                   message.channel.send(embed1);
@@ -1297,7 +1297,7 @@ if(command === "tempus"){
                                     }],
                                     footer: {
                                         icon_url: client.users.get("145772530454626304").avatarURL,
-                                        text: `bumble#8029 | tempus.xyz`
+                                        text: `bumble#3055 | tempus.xyz`
                                     }
                                   }}
                                   message.channel.send(embed1);
@@ -1324,7 +1324,7 @@ if(command === "tempus"){
                                     }],
                                     footer: {
                                         icon_url: client.users.get("145772530454626304").avatarURL,
-                                        text: `bumble#8029 | tempus.xyz`
+                                        text: `bumble#3055 | tempus.xyz`
                                     }
                                   }}
                                   message.channel.send(embed1);
@@ -1337,7 +1337,7 @@ if(command === "tempus"){
                     .setAuthor("ERROR!")
                     .setColor(0xe03a00)
                     .setDescription(`${summary.nickname} (${usern}) does not have any tempus data! \n \n [this data may be recorded under an alias]`)
-                    .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                    .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                     .setThumbnail(summary.avatar.large);
                     return message.channel.send({embed});
                     })
@@ -1346,7 +1346,7 @@ if(command === "tempus"){
                         .setAuthor("ERROR!")
                         .setColor(0xe03a00)
                         .setDescription(`${userb} is not a valid ID! \n \n [you may have made a typo]`)
-                        .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                        .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                         .setThumbnail(client.user.avatarURL);
                         return message.channel.send({embed});
                         })
@@ -1355,7 +1355,7 @@ if(command === "tempus"){
                     .setAuthor("ERROR!")
                     .setColor(0xe03a00)
                     .setDescription(`${usern} is not a valid ID! \n \n [you may have made a typo]`)
-                    .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                    .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                     .setThumbnail(client.user.avatarURL);
                     return message.channel.send({embed});
                     })
@@ -1377,7 +1377,7 @@ if(command === "tempus"){
                     .setAuthor("ERROR!")
                     .setColor(0xe03a00)
                     .setDescription(`\"${usern.replace(/(%20)+/g, " ")}\" could not be found! \n \n [their data may be recorded under an alias]`)
-                    .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                    .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                     .setThumbnail(client.user.avatarURL);
                     return message.channel.send({embed});
                 }
@@ -1432,7 +1432,7 @@ if(command === "tempus"){
                                 .setAuthor("ERROR!")
                                 .setColor(0xe03a00)
                                 .setDescription(`\"${usern}\" is not a valid map name! \n \n [you may have made a typo]`)
-                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                 .setThumbnail(client.user.avatarURL);
                                 return message.channel.send({embed});
                     }
@@ -1486,7 +1486,7 @@ if(command === "tempus"){
                                 }],
                                 footer: {
                                     icon_url: client.users.get("145772530454626304").avatarURL,
-                                    text: `bumble#8029 | tempus.xyz | map added ${getOrdinal(mapadd.getDate())} ${months[mapadd.getMonth()].toString().toLowerCase()} ${mapadd.getFullYear().toString().toLowerCase()}`
+                                    text: `bumble#3055 | tempus.xyz | map added ${getOrdinal(mapadd.getDate())} ${months[mapadd.getMonth()].toString().toLowerCase()} ${mapadd.getFullYear().toString().toLowerCase()}`
                                 }
                               }}
                               message.channel.send(embed1);
@@ -1497,7 +1497,7 @@ if(command === "tempus"){
                                 .setAuthor("ERROR!")
                                 .setColor(0xe03a00)
                                 .setDescription(`\"${usern}\" is not a valid map name! \n \n [you may have made a typo]`)
-                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                 .setThumbnail(client.user.avatarURL);
                                 return message.channel.send({embed});
                         })
@@ -1557,7 +1557,7 @@ if(command === "tempus"){
                         }],
                         footer: {
                             icon_url: client.users.get("145772530454626304").avatarURL,
-                            text: `bumble#8029 | backpack.tf | last updated ${time}`
+                            text: `bumble#3055 | backpack.tf | last updated ${time}`
                         }
                       }})
                 }).catch(err => {
@@ -1565,7 +1565,7 @@ if(command === "tempus"){
                                 .setAuthor("ERROR!")
                                 .setColor(0xe03a00)
                                 .setDescription(`${summary.nickname}'s TF2 inventory is inaccessible! \n \n [does this person play TF2?]`)
-                                .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                                .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                                 .setThumbnail(client.user.avatarURL);
                                 return message.channel.send({embed});
                     })
@@ -1577,7 +1577,7 @@ if(command === "tempus"){
                             .setAuthor("ERROR!")
                             .setColor(0xe03a00)
                             .setDescription(`${usern} is not a valid ID! \n \n ${diag}`)
-                            .setFooter("bumble#8029", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
+                            .setFooter("bumble#3055", "https://pre00.deviantart.net/b1bb/th/pre/i/2013/012/f/3/big_fat_bee_by_luzenrique-d5r8gxz.jpg")
                             .setThumbnail(client.user.avatarURL);
                             return message.channel.send({embed});
                 })
@@ -1585,7 +1585,7 @@ if(command === "tempus"){
         if(command === "help"){
             const member = message.member;
             var help = "**nectar#7257** commands \n \`\`\`>stats [mode] {steam ID} \`\`\` ***-GETS TF2 STATISTICS!*** \n **-modes include:** \n\`overall/ov\` - total hours \n\`damage/dmg\` - total damage, kills and assists \n\`support/sp\` - total points, caps and destruction \n\`scout\` - total hours, kills and damage as scout \n\`soldier\` - total hours, kills and damage as soldier \n\`pyro\` - total hours, kills and damage as pyro \n\`demo\` - total hours, kills and damage as demoman \n\`heavy\` - total hours, kills and damage as heavy \n\`engi\` - total hours, kills and damage as engineer \n\`med\` - total hours, healing and ubers as medic \n\`sniper\` - total hours, kills and headshots as sniper \n\`spy\` - total hours, kills and backstabs as spy \n \n \`\`\`>logs [mode] {steam ID} {number of games} \`\`\` ***-GETS LOGS.TF STATISTICS!*** \n **-modes include:** \n\`ov/overall\` - total kills, damage, and accuracy over all your logs.tf games \n\`misc\` - total airshots, assists and healing over all your logs.tf games \n\`scout\` - total kills, damage and accuracy as scout over all your logs.tf games \n\`soldier\` - total kills, damage and accuracy as soldier over all your logs.tf games \n\`pyro\` - total kills and damage as pyro over all your logs.tf games \n\`demo\` - total kills, damage and accuracy as demoman over all your logs.tf games \n\`heavy\` - total kills, damage and accuracy as heavy over all your logs.tf games \n\`engi\` - total kills, damage and accuracy as engineer over all your logs.tf games \n\`medic\` - total ubers, healing and accuracy as medic over all your logs.tf games \n\`sniper\` - total kills, damage and accuracy as sniper over all your logs.tf games \n\`spy\` - total kills, damage and accuracy as spy over all your logs.tf games \n \n \`\`\`>bp {steam ID} \`\`\`";
-            var help2 = "\n ***-GETS BACKPACK.TF STATISTICS!*** \n **-including:** \n\`value\` - overall value of your TF2 backpack in ref and USD \n\`rank\` - overall place on the inventory leaderboards \n \n \`\`\`>invite \`\`\` ***-INVITE NECTAR BOT TO YOUR SERVERS!*** \n \n \`\`\`>info \`\`\`***RETURNS SERVER AND BOT INFO*** \n \n *if you have any problems with the nectar bot, please contact bumble#8029* \n https\:\/\/discord\.gg\/QrMzA8j";
+            var help2 = "\n ***-GETS BACKPACK.TF STATISTICS!*** \n **-including:** \n\`value\` - overall value of your TF2 backpack in ref and USD \n\`rank\` - overall place on the inventory leaderboards \n \n \`\`\`>invite \`\`\` ***-INVITE NECTAR BOT TO YOUR SERVERS!*** \n \n \`\`\`>info \`\`\`***RETURNS SERVER AND BOT INFO*** \n \n *if you have any problems with the nectar bot, please contact bumble#3055* \n https\:\/\/discord\.gg\/QrMzA8j";
               member.send(help).catch(error =>{})
               member.send(help2)
               .then(() => message.reply("Check your DMs for help!")).catch(error => message.reply("Please enable server DMs!"));
